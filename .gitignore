@@ -3,3 +3,5 @@ packages/core/node_modules
 
 .turbo
 
+.DS_Store
+*storybook.log

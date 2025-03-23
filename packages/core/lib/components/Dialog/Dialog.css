@@ -1,0 +1,149 @@
+.kite-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.kite-dialog {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.kite-dialog--default {
+  width: auto;
+  max-height: 72%;
+}
+
+.kite-dialog--full {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.kite-dialog-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.kite-dialog-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.kite-dialog-title-icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.kite-dialog-close {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #666;
+}
+
+.kite-dialog-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  text-align: left;
+}
+
+.kite-dialog-actions {
+  padding: 16px 24px;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+}
+
+.kite-dialog-actions--start {
+  justify-content: flex-start;
+}
+
+.kite-dialog-actions--end {
+  justify-content: flex-end;
+}
+
+.kite-dialog-actions--center {
+  justify-content: center;
+}
+
+.kite-dialog-actions--space-between {
+  justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+  .kite-dialog {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
+
+/* xs and sm - full size */
+@media (min-width: 0px) and (max-width: 599px) {
+  .kite-dialog {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* md - default size */
+@media (min-width: 600px) and (max-width: 959px) {
+  .kite-dialog--default {
+    width: 75%;
+    max-height: 72%;
+  }
+}
+
+/* lg - default size */
+@media (min-width: 960px) and (max-width: 1279px) {
+  .kite-dialog--default {
+    width: 66.66%;
+    max-height: 72%;
+  }
+}
+
+/* xl - default size */
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .kite-dialog--default {
+    width: 66.66%;
+    max-height: 84%;
+  }
+}
+
+/* xxl - default size */
+@media (min-width: 1920px) {
+  .kite-dialog--default {
+    width: 50%;
+    max-height: 84%;
+  }
+}
