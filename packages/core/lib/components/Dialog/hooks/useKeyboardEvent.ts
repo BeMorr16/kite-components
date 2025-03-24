@@ -1,12 +1,5 @@
 import { useEffect } from "react";
 
-/**
- *
- *
- * @param key
- * @param callback
- * @param deps - Dependencies array for the useeffect
- */
 export const useKeyboardEvent = (
   key: string,
   callback: (event: KeyboardEvent) => void,

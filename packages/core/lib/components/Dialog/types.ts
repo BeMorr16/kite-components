@@ -1,13 +1,13 @@
 export type DialogSize = "default" | "full";
 
-export type DialogResult = "success" | "failure" | "canceled";
+export type DialogResult = "success" | "failure";
 
 export interface DialogProps {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
 
-  onComplete?: (result?: DialogResult, data?: any) => void;
+  onComplete?: (result?: DialogResult) => void;
 
   // Optionals
   title?: React.ReactNode;
@@ -52,7 +52,7 @@ export interface DialogOverlayProps {
 export interface DialogContextType {
   onClose: () => void;
   size: "default" | "full";
-  completeDialog: (result?: DialogResult, data?: any) => void;
+  completeDialog: (result?: DialogResult) => void;
   titleIcon?: React.ReactNode;
 
   dialogId: string;
@@ -60,3 +60,7 @@ export interface DialogContextType {
   bodyId: string;
   actionsId: string;
 }
+
+// export interface DialogChildProps {
+//     completeDialog: (result?: DialogResult, data?: any) => void;
+// }

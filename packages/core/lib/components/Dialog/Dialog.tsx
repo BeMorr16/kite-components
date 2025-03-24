@@ -20,7 +20,7 @@ const Dialog: React.FC<DialogProps> = ({
   titleIcon,
   size = "default",
   closeOnOverlayClick = true,
-    closeOnEsc = true,
+  closeOnEsc = true,
   role,
   id,
   className = "",
@@ -32,13 +32,13 @@ const Dialog: React.FC<DialogProps> = ({
   const bodyId = `${dialogId}-body`;
   const actionsId = `${dialogId}-actions`;
   const completeDialog = useCallback(
-    (result?: DialogResult, data?: any) => {
+    (result?: DialogResult) => {
       if (onComplete) {
-        onComplete(result, data);
+        onComplete(result);
       }
       onClose();
     },
-    [onClose]
+    [onClose, onComplete]
   );
 
   useLockBodyScroll(open);
@@ -165,7 +165,7 @@ const Dialog: React.FC<DialogProps> = ({
           id={dialogId}
           className={`kite-dialog kite-dialog--${size} ${className}`}
           style={style}
-                  role={role || "dialog"}
+          role={role || "dialog"}
           aria-modal="true"
           aria-labelledby={titleId}
           aria-describedby={`${bodyId} ${actionsId}`}

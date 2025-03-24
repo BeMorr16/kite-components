@@ -6,7 +6,6 @@ export {
     DialogSuccessButton,
     DialogFailureButton,
     DialogCancelButton,
-  useDialogContext,
   type DialogProps,
   type DialogTitleProps,
   type DialogBodyProps,

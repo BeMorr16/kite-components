@@ -3,13 +3,13 @@ import React from "react";
 
 export const DialogSuccessButton: React.FC<
   React.ButtonHTMLAttributes<HTMLButtonElement> & { data?: any }
-> = ({ children, data, onClick, ...props }) => {
+> = ({ children, onClick, ...props }) => {
   const { completeDialog } = useDialogContext();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (onClick) onClick(e);
-    completeDialog("success", data);
+    completeDialog("success");
   };
 
   return (
@@ -21,13 +21,13 @@ export const DialogSuccessButton: React.FC<
 
 export const DialogFailureButton: React.FC<
   React.ButtonHTMLAttributes<HTMLButtonElement> & { data?: any }
-> = ({ children, data, onClick, ...props }) => {
+> = ({ children, onClick, ...props }) => {
   const { completeDialog } = useDialogContext();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (onClick) onClick(e);
-    completeDialog("failure", data);
+    completeDialog("failure");
   };
 
   return (
@@ -39,13 +39,13 @@ export const DialogFailureButton: React.FC<
 
 export const DialogCancelButton: React.FC<
   React.ButtonHTMLAttributes<HTMLButtonElement> & { data?: any }
-> = ({ children, data, onClick, ...props }) => {
-  const { completeDialog } = useDialogContext();
+> = ({ children, onClick, ...props }) => {
+  const { onClose } = useDialogContext();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (onClick) onClick(e);
-    completeDialog("canceled", data);
+    onClose();
   };
 
   return (

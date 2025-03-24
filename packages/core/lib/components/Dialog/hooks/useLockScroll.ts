@@ -1,10 +1,5 @@
 import { useEffect } from "react";
 
-/**
- *
- *
- * @param lock
- */
 export const useLockBodyScroll = (lock: boolean = true) => {
   useEffect(() => {
     if (!lock) return;
