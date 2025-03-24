@@ -1,0 +1,55 @@
+.tableContainer {
+    margin: 2rem 0;
+  }
+  
+  .propsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  
+  .propsTable th,
+  .propsTable td {
+    padding: 0.75rem;
+    border: 1px solid var(--ifm-color-emphasis-300);
+  }
+  
+  .propsTable th {
+    background-color: var(--ifm-color-emphasis-100);
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .propName {
+    font-weight: 600;
+    font-family: var(--ifm-font-family-monospace);
+  }
+  
+  .required {
+    color: #e74c3c;
+    margin-left: 0.25rem;
+  }
+  
+  .propType {
+    color: #3498db;
+    white-space: nowrap;
+  }
+  
+  .propDefault {
+    color: var(--ifm-color-emphasis-600);
+  }
+  
+  .none {
+    color: var(--ifm-color-emphasis-500);
+    font-style: italic;
+  }
+  
+  .propDescription {
+    line-height: 1.5;
+  }
+  
+  .requiredNote {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ifm-color-emphasis-600);
+  }

@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+import ReactLiveScope from '@site/src/theme/ReactLiveScope';
+import "../../../../core/dist/index.css"
+
+export default function CustomDialog() {
+  const [open, setOpen] = useState(false);
+  
+  return (
+    <div>
+      <button 
+        onClick={() => setOpen(true)}
+        className="button button--primary"
+      >
+        Custom Dialog
+      </button>
+      
+      <ReactLiveScope.Dialog 
+        open={open} 
+        onClose={() => setOpen(false)}
+        className="custom-dialog"
+        size="full"
+      >
+        <ReactLiveScope.DialogTitle>
+          <div className="custom-dialog-header">
+            <span className="dialog-icon">🎨</span>
+            <span>Custom Styled Dialog</span>
+          </div>
+        </ReactLiveScope.DialogTitle>
+        <ReactLiveScope.DialogBody>
+          <div className="custom-content">
+            <h3>Custom Content Structure</h3>
+            <p>This dialog demonstrates customization capabilities:</p>
+            <ul>
+              <li>Custom title with icon</li>
+              <li>Full-size dialog on mobile</li>
+              <li>Custom styled elements</li>
+              <li>Structured content</li>
+            </ul>
+            <div className="content-section">
+              <h4>Additional Content Section</h4>
+              <p>You can structure dialog content however needed for your use case.</p>
+            </div>
+          </div>
+        </ReactLiveScope.DialogBody>
+        <ReactLiveScope.DialogActions justify="space-between">
+          <ReactLiveScope.DialogCancelButton onClick={() => setOpen(false)}>
+            Cancel
+          </ReactLiveScope.DialogCancelButton>
+          <div className="action-group">
+            <button className="secondary-button">Save Draft</button>
+            <ReactLiveScope.DialogSuccessButton onClick={() => setOpen(false)}>
+              Apply Changes
+            </ReactLiveScope.DialogSuccessButton>
+          </div>
+        </ReactLiveScope.DialogActions>
+      </ReactLiveScope.Dialog>
+    </div>
+  );
+}
