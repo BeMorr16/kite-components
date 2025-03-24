@@ -7,8 +7,8 @@ export interface DialogProps {
   onClose: () => void;
   children: React.ReactNode;
 
-  onComplete?: (result?: DialogResult, data?: any) => void
-    
+  onComplete?: (result?: DialogResult, data?: any) => void;
+
   // Optionals
   title?: React.ReactNode;
   titleIcon?: React.ReactNode;
@@ -19,7 +19,10 @@ export interface DialogProps {
   id?: string;
   className?: string;
   style?: React.CSSProperties;
-  //add aria description one?
+  role?: "dialog" | "alertdialog";
+  ariaDescribedby?: string;
+  ariaLabelledby?: string;
+  ariaLabel?: string;
 }
 
 export interface DialogTitleProps {
@@ -48,11 +51,12 @@ export interface DialogOverlayProps {
 //Anything needed at the component level. Gonne have to alter for completing
 export interface DialogContextType {
   onClose: () => void;
-    size: "default" | "full"; 
-    completeDialog: (result?: DialogResult, data?: any) => void;
+  size: "default" | "full";
+  completeDialog: (result?: DialogResult, data?: any) => void;
   titleIcon?: React.ReactNode;
 
-  dialogId: string; 
+  dialogId: string;
   titleId: string;
   bodyId: string;
+  actionsId: string;
 }

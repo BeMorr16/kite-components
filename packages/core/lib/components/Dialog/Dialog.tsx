@@ -14,13 +14,14 @@ import { useLockBodyScroll } from "./hooks/useLockScroll";
 const Dialog: React.FC<DialogProps> = ({
   open,
   onClose,
-    children,
+  children,
   onComplete,
   title,
   titleIcon,
   size = "default",
   closeOnOverlayClick = true,
-  closeOnEsc = true,
+    closeOnEsc = true,
+  role,
   id,
   className = "",
   style,
@@ -28,21 +29,25 @@ const Dialog: React.FC<DialogProps> = ({
   const dialogRef = useRef<HTMLDivElement>(null);
   const dialogId = id || `dialog-${Math.random().toString(36)}`;
   const titleId = `${dialogId}-title`;
-    const bodyId = `${dialogId}-body`;
-    const completeDialog = useCallback((result?: DialogResult, data?: any) => {
-        if (onComplete) {
-            onComplete(result, data)
-        }
-        onClose()
-    },[onClose])
+  const bodyId = `${dialogId}-body`;
+  const actionsId = `${dialogId}-actions`;
+  const completeDialog = useCallback(
+    (result?: DialogResult, data?: any) => {
+      if (onComplete) {
+        onComplete(result, data);
+      }
+      onClose();
+    },
+    [onClose]
+  );
 
   useLockBodyScroll(open);
 
   useKeyboardEvent(
     "Escape",
     () => {
-        if (open && closeOnEsc) {
-        onClose()
+      if (open && closeOnEsc) {
+        onClose();
       }
     },
     [open, closeOnEsc, onClose]
@@ -50,8 +55,7 @@ const Dialog: React.FC<DialogProps> = ({
 
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
-    useEffect(() => {
-      
+  useEffect(() => {
     if (open && dialogRef.current) {
       //check if this will work?
       previousActiveElement.current = document.activeElement as HTMLElement;
@@ -72,7 +76,11 @@ const Dialog: React.FC<DialogProps> = ({
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
 
-        if (e.shiftKey && e.key === "Tab" && document.activeElement === firstElement) {
+        if (
+          e.shiftKey &&
+          e.key === "Tab" &&
+          document.activeElement === firstElement
+        ) {
           e.preventDefault();
           lastElement.focus();
         } else if (!e.shiftKey && document.activeElement === lastElement) {
@@ -94,8 +102,8 @@ const Dialog: React.FC<DialogProps> = ({
   }, [open]);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (e.target === e.currentTarget && closeOnOverlayClick) {
-        onClose()
+    if (e.target === e.currentTarget && closeOnOverlayClick) {
+      onClose();
     }
   };
 
@@ -139,13 +147,14 @@ const Dialog: React.FC<DialogProps> = ({
   }
 
   const contextValue = {
-      onClose,
-      completeDialog,
+    onClose,
+    completeDialog,
     size,
     titleIcon,
     dialogId,
     titleId,
     bodyId,
+    actionsId,
   };
 
   return createPortal(
@@ -156,7 +165,10 @@ const Dialog: React.FC<DialogProps> = ({
           id={dialogId}
           className={`kite-dialog kite-dialog--${size} ${className}`}
           style={style}
-          // Placeholder for future ARIA attributes
+                  role={role || "dialog"}
+          aria-modal="true"
+          aria-labelledby={titleId}
+          aria-describedby={`${bodyId} ${actionsId}`}
           tabIndex={-1}
         >
           {hasDialogTitle ? (
@@ -173,7 +185,7 @@ const Dialog: React.FC<DialogProps> = ({
                 type="button"
                 className={`kite-dialog-close ${className}`}
                 onClick={onClose}
-                // Placeholder for future ARIA attributes
+                aria-label="Close dialog"
               >
                 <span>&times;</span>
               </button>
