@@ -34,12 +34,12 @@
 }
 
 .kite-dialog-header {
-  padding: 16px 24px;
+  padding: 16px 24px; 
   border-bottom: 1px solid #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
+  position: sticky; 
   top: 0;
   background: white;
   z-index: 1;
@@ -47,8 +47,8 @@
 
 .kite-dialog-title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   text-align: left;
@@ -64,7 +64,7 @@
   background: transparent;
   border: none;
   font-size: 18px;
-  cursor: pointer;
+  cursor: pointer; 
   padding: 4px 8px;
   color: #666;
 }
@@ -105,14 +105,6 @@
     height: 100%;
     max-height: 100%;
     border-radius: 0;
-  }
-}
-
-/* xs and sm - full size */
-@media (min-width: 0px) and (max-width: 599px) {
-  .kite-dialog {
-    width: 100%;
-    height: 100%;
   }
 }
 

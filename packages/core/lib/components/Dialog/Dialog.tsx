@@ -1,32 +1,101 @@
-import React, { isValidElement, useRef } from "react";
+import React, { isValidElement, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import DialogContext from "./utils/DialogContext";
-import { DialogProps } from "./types";
+import { DialogProps, DialogResult } from "./types";
 import DialogOverlay from "./components/DialogOverlay";
 import DialogTitle from "./components/DialogTitle";
 import DialogBody from "./components/DialogBody";
 import DialogActions from "./components/DialogActions";
 import "./Dialog.css";
+import { getFocusableElements } from "./utils/getFocusableElements";
+import { useKeyboardEvent } from "./hooks/useKeyboardEvent";
+import { useLockBodyScroll } from "./hooks/useLockScroll";
 
 const Dialog: React.FC<DialogProps> = ({
   open,
   onClose,
-  children,
+    children,
+  onComplete,
   title,
   titleIcon,
   size = "default",
   closeOnOverlayClick = true,
-//   closeOnEsc = true,
+  closeOnEsc = true,
   id,
   className = "",
   style,
 }) => {
-    const dialogRef = useRef<HTMLDivElement>(null);
-    const dialogId = id || `dialog-${Math.random().toString(36)}`;
-  // need to add scroll and focus logic 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogId = id || `dialog-${Math.random().toString(36)}`;
+  const titleId = `${dialogId}-title`;
+    const bodyId = `${dialogId}-body`;
+    const completeDialog = useCallback((result?: DialogResult, data?: any) => {
+        if (onComplete) {
+            onComplete(result, data)
+        }
+        onClose()
+    },[onClose])
+
+  useLockBodyScroll(open);
+
+  useKeyboardEvent(
+    "Escape",
+    () => {
+        if (open && closeOnEsc) {
+        onClose()
+      }
+    },
+    [open, closeOnEsc, onClose]
+  );
+
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+      
+    if (open && dialogRef.current) {
+      //check if this will work?
+      previousActiveElement.current = document.activeElement as HTMLElement;
+
+      const focusableElements = getFocusableElements(dialogRef.current);
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      } else {
+        dialogRef.current.focus();
+      }
+
+      const handleTabKey = (e: KeyboardEvent) => {
+        if (!dialogRef.current) return;
+
+        const focusableElements = getFocusableElements(dialogRef.current);
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && e.key === "Tab" && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      };
+      document.addEventListener("keydown", handleTabKey);
+
+      return () => {
+        document.removeEventListener("keydown", handleTabKey);
+      };
+    }
+    // When dialog closes focus on old
+    if (!open && previousActiveElement.current) {
+      previousActiveElement.current.focus();
+    }
+    return () => {};
+  }, [open]);
+
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget && closeOnOverlayClick) {
-      onClose();
+      if (e.target === e.currentTarget && closeOnOverlayClick) {
+        onClose()
     }
   };
 
@@ -60,10 +129,18 @@ const Dialog: React.FC<DialogProps> = ({
     }
   });
 
-//add some error handling
+  if (hasDialogTitle && title) {
+    console.warn(
+      "Dialog received title prop and DialogTitle component. The DialogTitle component will be used."
+    );
+  }
+  if (!children) {
+    console.error("Dialog needs children.");
+  }
 
   const contextValue = {
-    onClose,
+      onClose,
+      completeDialog,
     size,
     titleIcon,
     dialogId,
@@ -103,10 +180,10 @@ const Dialog: React.FC<DialogProps> = ({
             </div>
           ) : null}
 
-                  {hasDialogBody ? (
-                      <div id={bodyId} className="kite-dialog-body">
-                          {dialogBodyComponent}
-                          </div>
+          {hasDialogBody ? (
+            <div id={bodyId} className="kite-dialog-body">
+              {dialogBodyComponent}
+            </div>
           ) : (
             <div id={bodyId} className="kite-dialog-body">
               {otherComponents}
