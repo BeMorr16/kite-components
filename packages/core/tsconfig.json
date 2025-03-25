@@ -16,7 +16,8 @@
       "noUnusedLocals": true,
       "noUnusedParameters": true,
       "noImplicitReturns": true,
-      "outDir": "dist"
+      "outDir": "dist",
+      "types": ["node", "jest", "@testing-library/jest-dom"]
     },
     "include": ["lib"],
     "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
