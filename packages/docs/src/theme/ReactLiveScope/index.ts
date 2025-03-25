@@ -1,5 +1,4 @@
 import React from 'react';
-// Import your dialog components
 import { 
   Dialog, 
   DialogBody, 
@@ -8,10 +7,8 @@ import {
   DialogCancelButton, 
   DialogSuccessButton,
     DialogFailureButton,
-  useDialogContext
 } from "@site/../core/dist";
 
-// Add react-live imports you need here
 const ReactLiveScope = {
   React,
   ...React,
@@ -22,7 +19,6 @@ const ReactLiveScope = {
   DialogCancelButton,
   DialogSuccessButton,
     DialogFailureButton,
-  useDialogContext
 };
 
 export default ReactLiveScope;

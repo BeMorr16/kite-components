@@ -19,7 +19,8 @@ export default function BasicDialog() {
       <ReactLiveScope.Dialog 
         open={open} 
         onClose={() => setOpen(false)}
-        title="Example Dialog"
+              title="Example Dialog"
+              titleIcon={<p>😎</p>}
       >
         <ReactLiveScope.DialogBody>
           This is a basic dialog example that demonstrates the core functionality.
