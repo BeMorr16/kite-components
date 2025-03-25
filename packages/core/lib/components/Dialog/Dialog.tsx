@@ -142,6 +142,9 @@ const Dialog: React.FC<DialogProps> = ({
       "Dialog received title prop and DialogTitle component. The DialogTitle component will be used."
     );
   }
+  if (!title || !hasDialogTitle) {
+    console.error("Dialog needs title.");
+  }
   if (!children) {
     console.error("Dialog needs children.");
   }
@@ -175,7 +178,7 @@ const Dialog: React.FC<DialogProps> = ({
             dialogTitleComponent
           ) : title ? (
             <div className="kite-dialog-header">
-              <h2 id={titleId} className="kite-dialog-title">
+              <h2 id={titleId} className="kite-dialog-title" tabIndex={1}>
                 {titleIcon && (
                   <span className="kite-dialog-title-icon">{titleIcon}</span>
                 )}
@@ -185,7 +188,8 @@ const Dialog: React.FC<DialogProps> = ({
                 type="button"
                 className={`kite-dialog-close ${className}`}
                 onClick={onClose}
-                aria-label="Close dialog"
+                  aria-label="Close dialog"
+                  tabIndex={2}
               >
                 <span>&times;</span>
               </button>
@@ -193,9 +197,7 @@ const Dialog: React.FC<DialogProps> = ({
           ) : null}
 
           {hasDialogBody ? (
-            <div id={bodyId} className="kite-dialog-body">
-              {dialogBodyComponent}
-            </div>
+              dialogBodyComponent
           ) : (
             <div id={bodyId} className="kite-dialog-body">
               {otherComponents}

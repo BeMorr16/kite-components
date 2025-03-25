@@ -12,22 +12,19 @@ const DialogTitle: React.FC<DialogTitleProps> = ({
 
   return (
     <div className={`kite-dialog-header ${className}`}>
-      <h2 className="kite-dialog-title" id={titleId}>
-        {" "}
-        {/** Team Typography component and props to alter */}
+      <span className="kite-dialog-title-dialog" id={titleId}>
         {titleIcon && (
           <span className="kite-dialog-title-icon">{titleIcon}</span>
         )}
         {children}
-      </h2>
+      </span>
       <button
         type="button"
         className={`kite-dialog-close ${className}`}
         onClick={() => onClose()}
         aria-label="Close dialog"
       >
-        <span>&times;</span>{" "}
-        {/**Would be Icon of Team library and team button */}
+        <span>&times;</span>
       </button>
     </div>
   );

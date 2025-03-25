@@ -7,7 +7,7 @@ const DialogBody: React.FC<DialogBodyProps> = ({
   className = "",
 }) => {
     const { bodyId } = useDialogContext();
-    return <div id={bodyId} className={`kite-dialog-body ${className}`}>{children}</div>;
+    return <div id={bodyId} className={`kite-dialog-body ${className}`} tabIndex={3}>{children}</div>;
 };
 
 export default DialogBody;
