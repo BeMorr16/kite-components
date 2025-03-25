@@ -11,6 +11,7 @@ export interface DialogProps {
 
   // Optionals
   title?: React.ReactNode;
+  titleVariant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   titleIcon?: React.ReactNode;
   size?: DialogSize;
   closeOnOverlayClick?: boolean;

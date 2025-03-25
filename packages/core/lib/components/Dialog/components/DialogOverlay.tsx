@@ -10,7 +10,6 @@ const DialogOverlay: React.FC<DialogOverlayProps> = ({
     <div
       className={`kite-dialog-overlay ${className}`}
       onClick={onClick}
-      aria-hidden="true"
     >
       {children}
     </div>

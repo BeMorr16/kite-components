@@ -13,7 +13,7 @@ export const DialogSuccessButton: React.FC<
   };
 
   return (
-    <button {...props} type={props.type || "button"} onClick={handleClick}>
+    <button {...props} type={props.type || "button"} onClick={handleClick} aria-label="Confirm action">
       {children}
     </button>
   );
@@ -31,7 +31,7 @@ export const DialogFailureButton: React.FC<
   };
 
   return (
-    <button {...props} type={props.type || "button"} onClick={handleClick}>
+    <button {...props} type={props.type || "button"} onClick={handleClick} aria-label="Reject action">
       {children}
     </button>
   );
@@ -49,7 +49,7 @@ export const DialogCancelButton: React.FC<
   };
 
   return (
-    <button {...props} type={props.type || "button"} onClick={handleClick}>
+    <button {...props} type={props.type || "button"} onClick={handleClick} aria-label="Cancel dialog">
       {children}
     </button>
   );

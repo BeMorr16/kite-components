@@ -14,7 +14,7 @@ const DialogTitle: React.FC<DialogTitleProps> = ({
     <div className={`kite-dialog-header ${className}`}>
       <span className="kite-dialog-title-dialog" id={titleId}>
         {titleIcon && (
-          <span className="kite-dialog-title-icon">{titleIcon}</span>
+          <span className="kite-dialog-title-icon" aria-hidden="true">{titleIcon}</span>
         )}
         {children}
       </span>
@@ -24,7 +24,7 @@ const DialogTitle: React.FC<DialogTitleProps> = ({
         onClick={() => onClose()}
         aria-label="Close dialog"
       >
-        <span>&times;</span>
+        <span aria-hidden="true">&times;</span>
       </button>
     </div>
   );

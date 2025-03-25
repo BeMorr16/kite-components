@@ -10,6 +10,7 @@ import "./Dialog.css";
 import { getFocusableElements } from "./utils/getFocusableElements";
 import { useKeyboardEvent } from "./hooks/useKeyboardEvent";
 import { useLockBodyScroll } from "./hooks/useLockScroll";
+import getTitleElement from "./utils/getTitleElement";
 
 const Dialog: React.FC<DialogProps> = ({
   open,
@@ -17,6 +18,7 @@ const Dialog: React.FC<DialogProps> = ({
   children,
   onComplete,
   title,
+  titleVariant,
   titleIcon,
   size = "default",
   closeOnOverlayClick = true,
@@ -55,57 +57,99 @@ const Dialog: React.FC<DialogProps> = ({
 
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    if (open && dialogRef.current) {
-      //check if this will work?
-      previousActiveElement.current = document.activeElement as HTMLElement;
-
-      const focusableElements = getFocusableElements(dialogRef.current);
-      if (focusableElements.length > 0) {
-        focusableElements[0].focus();
-      } else {
-        dialogRef.current.focus();
-      }
-
-      const handleTabKey = (e: KeyboardEvent) => {
-        if (!dialogRef.current) return;
-
-        const focusableElements = getFocusableElements(dialogRef.current);
-        if (focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (
-          e.shiftKey &&
-          e.key === "Tab" &&
-          document.activeElement === firstElement
-        ) {
-          e.preventDefault();
-          lastElement.focus();
-        } else if (!e.shiftKey && document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement.focus();
-        }
-      };
-      document.addEventListener("keydown", handleTabKey);
-
-      return () => {
-        document.removeEventListener("keydown", handleTabKey);
-      };
-    }
-    // When dialog closes focus on old
-    if (!open && previousActiveElement.current) {
-      previousActiveElement.current.focus();
-    }
-    return () => {};
-  }, [open]);
-
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget && closeOnOverlayClick) {
       onClose();
     }
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent | KeyboardEvent) => {
+    if (!dialogRef.current) return;
+
+    if (e.key === "Tab") {
+      const focusableElements = getFocusableElements(dialogRef.current);
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+
+    if (dialogRef.current && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+      const elements = Array.from(
+        dialogRef.current.querySelectorAll(
+          'h1, h2, h3, h4, h5, h6, p, li, span[role="text"], div[role="text"]'
+        )
+      ) as HTMLElement[];
+
+      const visibleElements = elements.filter((el) => {
+        const style = window.getComputedStyle(el);
+        return (
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          el.textContent?.trim()
+        );
+      });
+
+      if (visibleElements.length > 0) {
+        const currentIndex = visibleElements.findIndex(
+          (el) => el === document.activeElement
+        );
+        let nextIndex;
+
+        if (e.key === "ArrowDown") {
+          nextIndex =
+            currentIndex < 0 ? 0 : (currentIndex + 1) % visibleElements.length;
+        } else {
+          nextIndex =
+            currentIndex < 0
+              ? visibleElements.length - 1
+              : (currentIndex - 1 + visibleElements.length) %
+                visibleElements.length;
+        }
+
+        visibleElements[nextIndex].setAttribute("tabindex", "-1");
+        visibleElements[nextIndex].focus();
+
+        e.preventDefault();
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (open && dialogRef.current) {
+      previousActiveElement.current = document.activeElement as HTMLElement;
+
+      const titleElement = document.getElementById(titleId);
+      if (titleElement) {
+        titleElement.setAttribute("tabindex", "-1");
+        titleElement.focus();
+      } else {
+        const focusableElements = getFocusableElements(dialogRef.current);
+        if (focusableElements.length > 0) {
+          focusableElements[0].focus();
+        } else {
+          dialogRef.current.focus();
+        }
+      }
+
+      dialogRef.current.addEventListener("keydown", handleKeyDown);
+      return () => {
+        dialogRef.current?.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+    if (!open && previousActiveElement.current) {
+      previousActiveElement.current.focus();
+    }
+    return () => {};
+  }, [open]);
 
   if (!open) return null;
 
@@ -142,7 +186,7 @@ const Dialog: React.FC<DialogProps> = ({
       "Dialog received title prop and DialogTitle component. The DialogTitle component will be used."
     );
   }
-  if (!title || !hasDialogTitle) {
+  if (!title && !hasDialogTitle) {
     console.error("Dialog needs title.");
   }
   if (!children) {
@@ -171,25 +215,30 @@ const Dialog: React.FC<DialogProps> = ({
           role={role || "dialog"}
           aria-modal="true"
           aria-labelledby={titleId}
-          aria-describedby={`${bodyId} ${actionsId}`}
+          aria-describedby={bodyId}
           tabIndex={-1}
         >
           {hasDialogTitle ? (
             dialogTitleComponent
           ) : title ? (
             <div className="kite-dialog-header">
-              <h2 id={titleId} className="kite-dialog-title" tabIndex={1}>
-                {titleIcon && (
-                  <span className="kite-dialog-title-icon">{titleIcon}</span>
-                )}
-                {title}
-              </h2>
+              {getTitleElement(
+                titleVariant,
+                { id: titleId, className: "kite-dialog-title" },
+                <>
+                  {titleIcon && (
+                    <span className="kite-dialog-title-icon" aria-hidden="true">
+                      {titleIcon}
+                    </span>
+                  )}
+                  {title}
+                </>
+              )}
               <button
                 type="button"
                 className={`kite-dialog-close ${className}`}
                 onClick={onClose}
-                  aria-label="Close dialog"
-                  tabIndex={2}
+                aria-label="Close dialog"
               >
                 <span>&times;</span>
               </button>
@@ -197,7 +246,7 @@ const Dialog: React.FC<DialogProps> = ({
           ) : null}
 
           {hasDialogBody ? (
-              dialogBodyComponent
+            dialogBodyComponent
           ) : (
             <div id={bodyId} className="kite-dialog-body">
               {otherComponents}
