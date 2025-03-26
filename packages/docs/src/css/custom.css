@@ -340,9 +340,20 @@ a:focus-visible {
   right: 3.5rem;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1000;
+  z-index: 200;
 }
-/* Animation */
+.version-message {
+  margin-right: .5rem;
+}
+@media (max-width: 1000px) {
+  .version-message {
+    display: none;
+  }
+  .version-chip-container {
+    right: .5rem;
+  }
+}
+/* Animations */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }

@@ -62,10 +62,10 @@ export default function ConfirmationDialog() {
         </ReactLiveScope.DialogBody>
         <ReactLiveScope.DialogActions>
           <ReactLiveScope.DialogFailureButton>
-            Abort
+            Cancel
           </ReactLiveScope.DialogFailureButton>
           <ReactLiveScope.DialogSuccessButton>
-            Delete Permanently
+            Confirm
           </ReactLiveScope.DialogSuccessButton>
         </ReactLiveScope.DialogActions>
       </ReactLiveScope.Dialog>

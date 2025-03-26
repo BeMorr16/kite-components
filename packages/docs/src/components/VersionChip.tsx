@@ -17,7 +17,7 @@ export default function VersionChip(): JSX.Element | null {
   
   return (
       <div className="version-chip-wrapper">
-          <span style={{marginRight: "1rem"}}>Need Help? Check your version:</span>
+          <span className='version-message'>Not working? Check your version:</span>
       <Link to="/changelog" className="version-chip">
         v{version}
       </Link>

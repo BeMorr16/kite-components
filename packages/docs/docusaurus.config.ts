@@ -53,24 +53,6 @@ const config: Config = {
             },
           ],
         },
-        //add back in the light/dark mode?
-        //Something to say "Not working? Check your version ->"
-        // {
-        //   position: 'right',
-        //   html: '<div style="margin-right: 0.5rem;">Need help? Check your version:</div>',
-        // },
-        // // Custom version chip (this will be a custom component we'll create)
-        // {
-        //   position: 'right',
-        //   type: 'custom',
-        //   className: 'navbar__version-chip',
-        // },
-        // Add back the light/dark mode toggle
-        {
-          type: 'html',
-          position: 'right',
-          value: '<div id="theme-toggle"></div>',
-        },
       ],
     },
     footer: {

@@ -1,13 +1,13 @@
-import React from 'react';
-import { 
-  Dialog, 
-  DialogBody, 
-  DialogActions, 
-  DialogTitle, 
-  DialogCloseButton, 
+import React from "react";
+import {
+  Dialog,
+  DialogBody,
+  DialogActions,
+  DialogTitle,
+  DialogCloseButton,
   DialogSuccessButton,
-    DialogFailureButton,
-} from "@site/../core/dist";
+  DialogFailureButton,
+} from "@kite/dialog";
 
 const ReactLiveScope = {
   React,
@@ -18,7 +18,7 @@ const ReactLiveScope = {
   DialogTitle,
   DialogCloseButton,
   DialogSuccessButton,
-    DialogFailureButton,
+  DialogFailureButton,
 };
 
 export default ReactLiveScope;
