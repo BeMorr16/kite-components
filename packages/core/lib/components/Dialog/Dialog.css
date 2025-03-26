@@ -159,18 +159,18 @@
   transform: translateY(1px);
 }
 
-.kite-dialog-button--cancel {
+.kite-dialog-button--close {
   background-color: #f5f5f5;
   color: #424242;
   border: 1px solid #e0e0e0;
 }
 
-.kite-dialog-button--cancel:hover {
+.kite-dialog-button--close:hover {
   background-color: #e0e0e0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.kite-dialog-button--cancel:active {
+.kite-dialog-button--close:active {
   background-color: #e0e0e0;
   transform: translateY(1px);
 }

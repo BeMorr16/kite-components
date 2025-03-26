@@ -36,7 +36,7 @@ export const DialogButton: React.FC<DialogButtonProps> = ({
     }
   };
 
-  const buttonClass = buttonType ? `kite-dialog-button--${buttonType}` : "kite-dialog-button--close";
+  const buttonClass = buttonType ? `kite-dialog-button--${buttonType}` : "";
 
 
   return (
