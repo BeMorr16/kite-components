@@ -4,8 +4,8 @@ import "../css/custom.css"
 
 
 
-export default function PropsTable() {
-  const props = [
+export default function PropsTable({ propType = "dialog" }) {
+  const dialogProps = [
     {
       name: "open",
       required: true,
@@ -118,7 +118,128 @@ export default function PropsTable() {
       default: undefined,
       description: "For accessibility"
     }
+  ];
+
+  const titleProps = [
+    {
+      name: "children",
+      required: true,
+      type: "ReactNode",
+      default: undefined,
+      description: "The content of the dialog title"
+    },
+    {
+      name: "icon",
+      required: false,
+      type: "ReactNode",
+      default: undefined,
+      description: "Icon element next to title"
+    },
+    {
+      name: "className",
+      required: false,
+      type: "string",
+      default: "''",
+      description: "Additional CSS class"
+    },
   ]
+  const bodyProps = [
+    {
+      name: "children",
+      required: true,
+      type: "ReactNode",
+      default: undefined,
+      description: "The content of the dialog title"
+    },
+    {
+      name: "className",
+      required: false,
+      type: "string",
+      default: "''",
+      description: "Additional CSS class"
+    },
+  ]
+  const actionProps = [
+    {
+      name: "children",
+      required: true,
+      type: "ReactNode",
+      default: undefined,
+      description: "The content of the dialog title"
+    },
+    {
+      name: "className",
+      required: false,
+      type: "string",
+      default: "''",
+      description: "Additional CSS class"
+    },
+    {
+      name: "justify",
+      required: false,
+      type: "'start' | 'end' | 'center' | 'space-between'",
+      default: "end",
+      description: "Controls the alignment of the actions"
+    },
+  ];
+  const buttonProps = [
+    {
+      name: "children",
+      required: true,
+      type: "ReactNode",
+      default: undefined,
+      description: "The content of the dialog title"
+    },
+    {
+      name: "className",
+      required: false,
+      type: "string",
+      default: "''",
+      description: "Additional CSS class"
+    },
+    {
+      name: "onClick",
+      required: false,
+      type: "func",
+      default: undefined,
+      description: "Additional click handler"
+    },
+    {
+      name: "buttonType",
+      required: false,
+      type: "'success' | 'failure' | 'close'",
+      default: 'close',
+      description: "Determines button styling and behavior"
+    },
+    {
+      name: "aria-label",
+      required: false,
+      type: "string",
+      default: "Auto generated",
+      description: "Accessibility"
+    },
+
+  ];
+
+  const getProps = () => {
+    switch(propType) {
+      case "dialog":
+        return dialogProps;
+      case "title":
+        return titleProps;
+      case "body":
+        return bodyProps;
+      case "actions":
+        return actionProps;
+      case "button":
+        return buttonProps;
+      default:
+        return dialogProps;
+    }
+  };
+
+  const props = getProps();
+
   return (
     <div className="tableContainer">
       <table className="propsTable">
