@@ -14,12 +14,6 @@ export default function DialogExamplesGallery() {
       </div>
       
       <div className="example-card">
-        <h3>Confirmation Dialog</h3>
-        <p>Used to confirm critical actions before proceeding.</p>
-        <ConfirmationDialog />
-      </div>
-      
-      <div className="example-card">
         <h3>Custom Styled Dialog</h3>
         <p>Demonstrates customization capabilities for complex use cases.</p>
         <CustomDialog />

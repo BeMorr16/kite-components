@@ -5,16 +5,30 @@ import "../../../../core/dist/index.css"
 export default function ConfirmationDialog() {
   const [open, setOpen] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [rejected, setRejected] = useState(false);
   
   const handleOpen = () => {
     setOpen(true);
     setConfirmed(false);
   };
-  
-  const handleConfirm = () => {
-    setConfirmed(true);
+
+
+  const handleCompletion = (result) => {
     setOpen(false);
-  };
+    if (result === "success") {
+      setTimeout(() => {
+        setConfirmed(true);
+      }, 1000);
+    } else if (result === "failure") {
+      setTimeout(() => {
+        setRejected(true);
+      }, 1000);
+    }
+    setTimeout(() => {
+      setRejected(false);
+      setConfirmed(false)
+    }, 2000);
+  }
   
   return (
     <div className="example-container">
@@ -30,22 +44,28 @@ export default function ConfirmationDialog() {
           Item successfully deleted!
         </div>
       )}
+      {rejected && (
+        <div className="reject-message">
+          Canceled
+        </div>
+      )}
       
       <ReactLiveScope.Dialog 
         open={open} 
         onClose={() => setOpen(false)}
         title="Confirm Deletion"
         role="alertdialog"
+        onComplete={handleCompletion}
       >
         <ReactLiveScope.DialogBody>
           Are you sure you want to permanently delete this item? 
           This action cannot be undone.
         </ReactLiveScope.DialogBody>
         <ReactLiveScope.DialogActions>
-          <ReactLiveScope.DialogCancelButton onClick={() => setOpen(false)}>
-            Cancel
-          </ReactLiveScope.DialogCancelButton>
-          <ReactLiveScope.DialogSuccessButton onClick={handleConfirm}>
+          <ReactLiveScope.DialogFailureButton>
+            Abort
+          </ReactLiveScope.DialogFailureButton>
+          <ReactLiveScope.DialogSuccessButton>
             Delete Permanently
           </ReactLiveScope.DialogSuccessButton>
         </ReactLiveScope.DialogActions>

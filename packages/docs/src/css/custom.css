@@ -15,6 +15,7 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --doc-sidebar-width: 200px !important;
 }
 
 /* For dark mode */
@@ -29,11 +30,9 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Custom styles for dialog examples */
 .example-container {
   margin: 2rem 0;
   padding: 1.5rem;
-  border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 0.5rem;
   position: relative;
 }
@@ -45,6 +44,14 @@
   border: 1px solid rgba(46, 204, 113, 0.3);
   border-radius: 0.25rem;
   color: #27ae60;
+}
+.reject-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 0.25rem;
+  color: #c0392b;
 }
 
 .custom-dialog-header {
@@ -83,14 +90,13 @@
   cursor: pointer;
 }
 
-/* Focus styles for accessibility */
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--ifm-color-primary);
   outline-offset: 2px;
 }
 
-/* Live playground styles */
+
 .playground {
   margin: 2rem 0;
   border: 1px solid var(--ifm-color-emphasis-300);
@@ -156,4 +162,61 @@ a:focus-visible {
   .examples-gallery {
     grid-template-columns: 1fr;
   }
+}
+
+
+.tableContainer {
+  margin: 2rem 0;
+}
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.propsTable th,
+.propsTable td {
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.propsTable th {
+  background-color: var(--ifm-color-emphasis-100);
+  font-weight: 600;
+  text-align: left;
+}
+
+.propName {
+  font-weight: 600;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.required {
+  color: #e74c3c;
+  margin-left: 0.25rem;
+}
+
+.propType {
+  color: #3498db;
+  white-space: nowrap;
+}
+
+.propDefault {
+  color: var(--ifm-color-emphasis-600);
+}
+
+.none {
+  color: var(--ifm-color-emphasis-500);
+  font-style: italic;
+}
+
+.propDescription {
+  line-height: 1.5;
+}
+
+.requiredNote {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
 }

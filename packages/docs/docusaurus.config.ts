@@ -31,16 +31,10 @@ const config = {
     navbar: {
       title: 'Kite Dialog',
       logo: {
-        alt: 'Kite Logo',
+        alt: 'Docs Logo',
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'Documentation',
-        },
         {
           type: 'dropdown',
           label: 'Docs',
@@ -48,11 +42,11 @@ const config = {
           items: [
             {
               to: '/docs/technical/getting-started',
-              label: 'Technical Documentation',
+              label: 'For Developers',
             },
             {
               to: '/docs/non-technical/overview',
-              label: 'Non-Technical Guide',
+              label: 'For Designers',
             },
           ],
         },

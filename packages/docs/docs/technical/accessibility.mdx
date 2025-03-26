@@ -1,0 +1,130 @@
+---
+title: How to be Accessible
+sidebar_label: Accessibility
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import BasicDialog from "@site/src/components/Examples/BasicDialog";
+import AccessibleDialog from "@site/src/components/Examples/AccessibilityDialog";
+import ActionExamples from "@site/src/components/Examples/ActionExamples";
+
+
+
+
+# Accessibility
+
+The kite dialog component is designed to be WCAG AA compliant. This guide explains how to ensure the component is accessible.
+
+## Built in Features
+
+- Properly configured ```aria-modal```, ```aria-labelledby```, and ```aria-describedby```
+- Automatic focus trap within the dialog and focus restoration
+- Support for Tab, Escape and arrow key navigation
+- Proper structural elements and labeling
+- Clear focus indicator
+
+## Best Practices 
+
+
+**Proper Dialog Titles**
+
+```jsx
+// Option 1: Using the title prop
+<Dialog
+    open={isOpen}
+    onClose={handleClose}
+    title="Important Notice"
+>
+    {/* Dialog content */}
+</Dialog>
+
+// Option 2: Using the DialogTitle component
+<Dialog
+    open={isOpen}
+    onClose={handleClose}
+>
+    <DialogTitle>
+        <h2>Important Notice</h2>
+    </DialogTitle>
+    {/* Dialog content */}
+</Dialog>
+```
+Both amount to the same.
+
+The DialogTitle component can be useful when creating custom titles
+
+
+```jsx
+<Dialog
+    open={isOpen}
+    onClose={handleClose}
+>
+    <DialogTitle>
+        <div>
+            <h6>Header line one</h6>
+            <p>Second line</p>
+        </div>
+    </DialogTitle>
+    {/* Dialog content */}
+</Dialog>
+```
+Would translate to the following Dialog:
+
+<AccessibleDialog/>
+
+
+
+
+**All content should be placed inside DialogBody**
+
+```jsx
+<Dialog
+    open={isOpen}
+    onClose={handleClose}
+    title="Important Notice"
+>
+    <DialogBody>
+        {/* All form or text information elements go here */}
+    </DialogBody>
+</Dialog>
+```
+
+
+**Actions Placement**
+Actions can be placed inside the DialogBody if the action buttons should be below all the information
+```jsx
+<Dialog
+    open={isOpen}
+    onClose={handleClose}
+    title="Important Notice"
+>
+    <DialogBody>
+        {/* All form or text information elements go here */}
+        <DialogButton buttonType="close" onClick={handleClose}>Example Button</DialogButton>
+        {/* Or you can use your own buttons */}
+        <button onClick={handleClose}>Example Button 2</button>
+    </DialogBody>
+</Dialog>
+```
+An example of this
+
+<ActionExamples/>
+
+In DialogActions:
+```jsx
+<Dialog
+    open={isOpen}
+    onClose={handleClose}
+    title="Important Notice"
+>
+    <DialogBody>
+        {/* All form or text information elements go here */}
+    </DialogBody>
+    <DialogActions>
+        <DialogButton buttonType="close" onClick={handleClose}>Example Button</DialogButton>
+        {/* Or you can use your own buttons */}
+        <button onClick={handleClose}>Example Button 2</button>
+    </DialogAction>
+</Dialog>
+```

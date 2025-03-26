@@ -1,0 +1,82 @@
+---
+title: Getting Started with Kite Dialog
+sidebar_label: Getting Started
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import BasicDialog from "@site/src/components/Examples/BasicDialog";
+
+# Getting Started with Kite Dialog
+
+The Kite Dialog component provides an accessible, responsive modal dialog solution for your React applications. This guide will help you get up and running quickly.
+
+## Installation
+
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    ```npm install @kite/dialog ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```yarn add @kite/dialog ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```pnpm add @kite/dialog ```
+  </TabItem>
+</Tabs>
+
+## Basic Usage
+
+Here's a simple example of the Dialog component in action:
+
+```jsx
+import React, { useState } from "react";
+import { Dialog, DialogBody, DialogActions } from "@kite/Dialog";
+
+function YourComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+
+  return (
+    <>
+      <button onClick={handleOpen}>Open Dialog</button>
+
+      <Dialog
+        open={isOpen}
+        onClose={handleClose}
+        title="Example Dialog"
+        titleIcon={<p>😎</p>}
+      >
+        <DialogBody>
+          <p>
+            This is a basic dialog example that demonstrates the core
+            functionality. You can customize the content, title, and actions 
+            to suit your needs.
+          </p>
+        </DialogBody>
+        <DialogActions>
+          <button onClick={handleClose}>Cancel</button>
+          <button onClick={handleClose}>Confirm</button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}
+```
+
+## Live Example
+
+<BasicDialog />
+
+## Component Structure
+
+The Dialog component is composed of several parts:
+    1. ```Dialog``` - The main wrapper component
+    2. ```DialogTitle``` (optional) - Dynamic title structure. Needs this or ```title``` prop
+    3. ```DialogBody``` (optional) - Contains the dialog content
+    4. ```DialogActions``` (optional) - Container for action buttons
+    5. ```DialogSuccessButton``` (optional) - Provides "success" to ```onComplete``` callback. DialogButton with buttonType 'success'
+    6. ```DialogFailureButton``` (optional) - Provides "failure" to ```onComplete``` callback. DialogButton with buttonType 'failure'
+    7. ```DialogCloseButton``` (optional) - Calls ```onClose``` callback. DialogButton with buttonType 'close'

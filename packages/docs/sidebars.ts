@@ -8,10 +8,9 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  */
 const sidebars: SidebarsConfig = {
   docs: [
-    'intro',
     {
       type: 'category',
-      label: 'Technical Documentation',
+      label: 'For Developers',
       items: [
         'technical/getting-started',
         'technical/api-reference',
@@ -21,7 +20,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Non-Technical Guide',
+      label: 'For Desginers',
       items: [
         'non-technical/overview',
         'non-technical/when-to-use',

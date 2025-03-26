@@ -4,7 +4,7 @@ import {
   DialogBody, 
   DialogActions, 
   DialogTitle, 
-  DialogCancelButton, 
+  DialogCloseButton, 
   DialogSuccessButton,
     DialogFailureButton,
 } from "@site/../core/dist";
@@ -16,7 +16,7 @@ const ReactLiveScope = {
   DialogBody,
   DialogActions,
   DialogTitle,
-  DialogCancelButton,
+  DialogCloseButton,
   DialogSuccessButton,
     DialogFailureButton,
 };

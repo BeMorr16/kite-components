@@ -1,0 +1,54 @@
+---
+title: Examples
+sidebar_label: Examples
+---
+
+import DialogExamplesGallery from "@site/src/components/Examples/ExamplesGallery";
+import ConfirmationDialog from "@site/src/components/Examples/ConfirmationDialog";
+
+# Examples
+
+## Confirmation
+
+<ConfirmationDialog />
+
+```jsx
+const handleCompletion = (result) => {
+  setOpen(false);
+  if (result === "success") {
+    setTimeout(() => {
+      setConfirmed(true);
+    }, 1000);
+    setConfirmed(false);
+  } else if (result === "failure") {
+    setTimeout(() => {
+      setRejected(true);
+    }, 1000);
+  }
+  setTimeout(() => {
+    setRejected(false);
+    setConfirmed(false);
+  }, 2000);
+};
+return (
+  <Dialog
+    open={open}
+    onClose={() => setOpen(false)}
+    title="Confirm Deletion"
+    role="alertdialog"
+    onComplete={handleCompletion}
+  >
+    <DialogBody>
+      Are you sure you want to permanently delete this item? This action cannot
+      be undone.
+    </DialogBody>
+    <DialogActions>
+      <DialogCloseButton>Cancel</DialogCloseButton>
+      <DialogSuccessButton>Delete Permanently</DialogSuccessButton>
+    </DialogActions>
+  </Dialog>
+);
+```
+
+
+<DialogExamplesGallery/>

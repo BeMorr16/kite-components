@@ -23,7 +23,7 @@ export default function CustomDialog() {
         <ReactLiveScope.DialogTitle>
           <div className="custom-dialog-header">
             <span className="dialog-icon">🎨</span>
-            <span>Custom Styled Dialog</span>
+            <p style={{margin: 0}}>Custom Styled Dialog</p>
           </div>
         </ReactLiveScope.DialogTitle>
         <ReactLiveScope.DialogBody>
@@ -32,7 +32,7 @@ export default function CustomDialog() {
             <p>This dialog demonstrates customization capabilities:</p>
             <ul>
               <li>Custom title with icon</li>
-              <li>Full-size dialog on mobile</li>
+              <li>Full-size dialog</li>
               <li>Custom styled elements</li>
               <li>Structured content</li>
             </ul>
@@ -43,9 +43,9 @@ export default function CustomDialog() {
           </div>
         </ReactLiveScope.DialogBody>
         <ReactLiveScope.DialogActions justify="space-between">
-          <ReactLiveScope.DialogCancelButton onClick={() => setOpen(false)}>
+          <ReactLiveScope.DialogCloseButton onClick={() => setOpen(false)}>
             Cancel
-          </ReactLiveScope.DialogCancelButton>
+          </ReactLiveScope.DialogCloseButton>
           <div className="action-group">
             <button className="secondary-button">Save Draft</button>
             <ReactLiveScope.DialogSuccessButton onClick={() => setOpen(false)}>
