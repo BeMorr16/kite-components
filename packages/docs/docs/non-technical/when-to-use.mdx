@@ -1,0 +1,42 @@
+---
+title: When to Use Dialog
+sidebar_label: Usage & Examples
+---
+
+import BasicDialog from "@site/src/components/Examples/BasicDialog";
+import ConfirmationDialog from "@site/src/components/Examples/ConfirmationDialog";
+import FormDialog from "@site/src/components/Examples/FormDialog";
+import CustomDialog from "@site/src/components/Examples/CustomDialog";
+
+# When to Use Dialog
+
+## Appropriate Use Cases
+
+- **Confirmations**: When an action requires explicit user confirmation
+- **Form Entry**: For collecting focused information without navigating away
+- **Alerts**: For critical information requiring immediate attention
+- **Decision Points**: When a user must choose between distinct options
+
+## When Not to Use
+
+- For complex multi-step workflows (consider a wizard pattern instead)
+- For non-critical information that doesn't interrupt workflow
+- For content that exceeds one screen's worth of information
+
+## Examples
+
+### Basic Information Dialog
+
+<BasicDialog />
+
+### Confirmation Dialog
+
+<ConfirmationDialog />
+
+### Form Dialog
+
+<FormDialog/>
+
+### Custom Styled
+
+<CustomDialog/>

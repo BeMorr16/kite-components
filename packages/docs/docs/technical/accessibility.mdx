@@ -26,8 +26,11 @@ The kite dialog component is designed to be WCAG AA compliant. This guide explai
 
 ## Best Practices 
 
+To ensure accessibility make sure you:
+- Use semantic elements inside the title, body and actions
+- Properly apply an aria-label to all interactive elements
 
-**Proper Dialog Titles**
+### Proper Dialog Titles
 
 ```jsx
 // Option 1: Using the title prop
@@ -35,6 +38,7 @@ The kite dialog component is designed to be WCAG AA compliant. This guide explai
     open={isOpen}
     onClose={handleClose}
     title="Important Notice"
+    titleVariant="h2"
 >
     {/* Dialog content */}
 </Dialog>
@@ -62,7 +66,7 @@ The DialogTitle component can be useful when creating custom titles
 >
     <DialogTitle>
         <div>
-            <h6>Header line one</h6>
+            <h4>Header line one</h4>
             <p>Second line</p>
         </div>
     </DialogTitle>
@@ -76,7 +80,7 @@ Would translate to the following Dialog:
 
 
 
-**All content should be placed inside DialogBody**
+### All content should be placed inside DialogBody
 
 ```jsx
 <Dialog
@@ -91,7 +95,7 @@ Would translate to the following Dialog:
 ```
 
 
-**Actions Placement**
+### Actions Placement
 Actions can be placed inside the DialogBody if the action buttons should be below all the information
 ```jsx
 <Dialog

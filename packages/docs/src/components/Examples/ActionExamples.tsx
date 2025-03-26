@@ -6,7 +6,7 @@ export default function ActionExamples() {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   return (
-    <div style={{display: "flex", flexDirection: 'column', gap: "16px"}}>
+    <div className="example-container" style={{display: "flex", flexDirection: 'row', gap: "24px"}}>
       <div>
         <button
           onClick={() => setOpen1(true)}

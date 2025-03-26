@@ -7,7 +7,7 @@ import "../../../../core/dist/index.css"
 export default function BasicDialog() {
     const [open, setOpen] = useState(false);
   return (
-    <div>
+    <div className='example-container'>
       <button 
         onClick={() => setOpen(true)}
         className="button button--primary"

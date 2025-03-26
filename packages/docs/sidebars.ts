@@ -24,8 +24,6 @@ const sidebars: SidebarsConfig = {
       items: [
         'non-technical/overview',
         'non-technical/when-to-use',
-        'non-technical/design-guidelines',
-        'non-technical/examples-gallery',
       ],
     },
   ],

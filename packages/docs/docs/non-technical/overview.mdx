@@ -1,0 +1,38 @@
+---
+title: Dialog Component Overview
+sidebar_label: Overview
+---
+
+# Dialog Component Overview
+
+The Kite Dialog component provides modal dialogs that temporarily interrupt the user's workflow to gather information or confirm actions.
+
+## Design Guidelines
+
+- **Purpose**: Use dialogs to focus user attention on completing a specific task
+- **Content**: Keep dialog content focused, concise, and actionable
+- **Accessibility**: All dialogs are fully keyboard navigable and screen reader compatible
+
+## Anatomy
+
+![Dialog Anatomy](/img/dialog-anatomy.png)
+
+1. **Close Icon**: Dismisses the dialog without saving data or taking action
+2. **Title**: Clearly describes the dialog's purpose (required)
+3. **Body**: Contains the main content and controls
+4. **Actions**: Contains buttons for completing or canceling the task
+5. **Overlay**: Background layer that blocks interaction with the main page
+
+## Accessibility Features
+
+- Trapped focus within the dialog
+- Arrow key navigation for content
+- ARIA attributes for screen readers
+- Escape key dismissal
+- Returns focus to triggering element when closed
+
+## Sizing & Responsiveness
+
+The Dialog component automatically adjusts based on screen size:
+- Centered modal on desktop (Greater than 600px)
+- Full screen presentation on mobile (Less than 600px)

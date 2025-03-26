@@ -5,30 +5,21 @@ sidebar_label: Examples
 
 import DialogExamplesGallery from "@site/src/components/Examples/ExamplesGallery";
 import ConfirmationDialog from "@site/src/components/Examples/ConfirmationDialog";
+import FormDialog from "@site/src/components/Examples/FormDialog";
 
 # Examples
 
-## Confirmation
+## Confirmation Example
 
 <ConfirmationDialog />
 
 ```jsx
 const handleCompletion = (result) => {
-  setOpen(false);
   if (result === "success") {
-    setTimeout(() => {
-      setConfirmed(true);
-    }, 1000);
-    setConfirmed(false);
+    {/* Success logic */}
   } else if (result === "failure") {
-    setTimeout(() => {
-      setRejected(true);
-    }, 1000);
+    {/* Fail logic */}
   }
-  setTimeout(() => {
-    setRejected(false);
-    setConfirmed(false);
-  }, 2000);
 };
 return (
   <Dialog
@@ -48,6 +39,90 @@ return (
     </DialogActions>
   </Dialog>
 );
+```
+
+## Complex Form Example
+> If form requires complex/async logic use your own onClick.
+
+> Can use your own button or pass onClick to DialogButton which will be called in order of 1. passed onClick 2. onComplete (if defined) 3. onClose 
+
+<FormDialog/>
+
+Code:
+```jsx
+function ProjectFormExample() {
+  const [open, setOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [projectStatus, setProjectStatus] = useState(null); // null, 'success', 'error'
+  const [formData, setFormData] = useState({ name: "", description: "" });
+  const [errors, setErrors] = useState({});
+  
+  const validateForm = () => {
+    const formErrors = {};
+    // Check required fields and validate
+    setErrors(formErrors);
+    return isValid;
+  };
+
+  const handleSubmit = async () => {
+    if (!validateForm()) return;
+    try {
+      setIsSubmitting(true);
+      // Call your API here
+      await apiCall(formData);
+      // Handle success logic
+      setProjectStatus('success');
+    } catch (error) {
+      setProjectStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div className="example-container">
+      <button onClick={() => setOpen(true)}>Create New Project</button>
+      {projectStatus === 'success' && (
+        <div className="status-badge success">Project created successfully!</div>
+      )}
+      
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Create New Project"
+      >
+        <DialogBody>
+          <div className="form-group">
+            <label htmlFor="projectName">Project Name *</label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => /* update form state */}
+              aria-invalid={errors.name ? "true" : "false"}
+            />
+            {errors.name && <div className="error-message">{errors.name}</div>}
+          </div>
+          {/* Additional form fields... */}
+        </DialogBody>
+        
+        <DialogActions>
+          <button className="custom" onClick={() => setOpen(false)}>
+            Cancel
+          </button>
+          
+          <button 
+            className="custom"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Creating..." : "Create Project"}
+          </button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
 ```
 
 ## Other Examples

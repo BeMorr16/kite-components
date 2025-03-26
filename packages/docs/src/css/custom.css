@@ -30,6 +30,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+/* Example container styles */
 .example-container {
   margin: 2rem 0;
   padding: 1.5rem;
@@ -37,23 +38,27 @@
   position: relative;
 }
 
-.success-message {
+/* Status messages */
+.status-message {
   margin-top: 1rem;
   padding: 0.75rem;
-  background-color: rgba(46, 204, 113, 0.15);
-  border: 1px solid rgba(46, 204, 113, 0.3);
   border-radius: 0.25rem;
-  color: #27ae60;
-}
-.reject-message {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background-color: rgba(231, 76, 60, 0.15);
-  border: 1px solid rgba(231, 76, 60, 0.3);
-  border-radius: 0.25rem;
-  color: #c0392b;
+  animation: fade-in 0.3s ease-in-out;
 }
 
+.status-message.success {
+  background-color: rgba(46, 204, 113, 0.15);
+  color: #27ae60;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.status-message.error {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: #c0392b;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+/* Custom dialog styling */
 .custom-dialog-header {
   display: flex;
   align-items: center;
@@ -90,13 +95,14 @@
   cursor: pointer;
 }
 
+/* Focus states */
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--ifm-color-primary);
   outline-offset: 2px;
 }
 
-
+/* Documentation playground */
 .playground {
   margin: 2rem 0;
   border: 1px solid var(--ifm-color-emphasis-300);
@@ -132,8 +138,7 @@ a:focus-visible {
   background-color: var(--ifm-background-color);
 }
 
-
-
+/* Examples gallery */
 .examples-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -164,30 +169,30 @@ a:focus-visible {
   }
 }
 
-
-.tableContainer {
+/* Props table styles */
+.table-container {
   margin: 2rem 0;
 }
 
-.propsTable {
+.props-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
 
-.propsTable th,
-.propsTable td {
+.props-table th,
+.props-table td {
   padding: 0.75rem;
   border: 1px solid var(--ifm-color-emphasis-300);
 }
 
-.propsTable th {
+.props-table th {
   background-color: var(--ifm-color-emphasis-100);
   font-weight: 600;
   text-align: left;
 }
 
-.propName {
+.prop-name {
   font-weight: 600;
   font-family: var(--ifm-font-family-monospace);
 }
@@ -197,12 +202,12 @@ a:focus-visible {
   margin-left: 0.25rem;
 }
 
-.propType {
+.prop-type {
   color: #3498db;
   white-space: nowrap;
 }
 
-.propDefault {
+.prop-default {
   color: var(--ifm-color-emphasis-600);
 }
 
@@ -211,12 +216,65 @@ a:focus-visible {
   font-style: italic;
 }
 
-.propDescription {
+.prop-description {
   line-height: 1.5;
 }
 
-.requiredNote {
+.required-note {
   margin-top: 0.5rem;
   font-size: 0.8rem;
   color: var(--ifm-color-emphasis-600);
+}
+
+/* Project Form Example Styles */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group input[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #e53935;
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Animation */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

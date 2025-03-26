@@ -6,7 +6,7 @@ export default function CustomDialog() {
   const [open, setOpen] = useState(false);
   
   return (
-    <div>
+    <div className='example-container'>
       <button 
         onClick={() => setOpen(true)}
         className="button button--primary"

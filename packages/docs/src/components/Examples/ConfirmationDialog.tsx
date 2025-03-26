@@ -14,7 +14,6 @@ export default function ConfirmationDialog() {
 
 
   const handleCompletion = (result) => {
-    setOpen(false);
     if (result === "success") {
       setTimeout(() => {
         setConfirmed(true);
@@ -40,12 +39,12 @@ export default function ConfirmationDialog() {
       </button>
       
       {confirmed && (
-        <div className="success-message">
+        <div className="status-message success">
           Item successfully deleted!
         </div>
       )}
       {rejected && (
-        <div className="reject-message">
+        <div className="status-message error">
           Canceled
         </div>
       )}

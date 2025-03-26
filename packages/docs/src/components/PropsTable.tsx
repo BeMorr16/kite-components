@@ -241,8 +241,8 @@ export default function PropsTable({ propType = "dialog" }) {
   const props = getProps();
 
   return (
-    <div className="tableContainer">
-      <table className="propsTable">
+    <div className="table-container">
+      <table className="props-table">
         <thead>
           <tr>
             <th>Prop</th>
@@ -254,26 +254,26 @@ export default function PropsTable({ propType = "dialog" }) {
         <tbody>
           {props.map((prop) => (
             <tr key={prop.name}>
-              <td className="propName">
+              <td className="prop-name">
                 {prop.name}
                 {prop.required && <span className="required">*</span>}
               </td>
-              <td className="propType">
+              <td className="prop-type">
                 <code>{prop.type}</code>
               </td>
-              <td className="propDefault">
+              <td className="prop-default">
                 {prop.default === undefined ? (
                   <span className="none">—</span>
                 ) : (
                   <code>{prop.default}</code>
                 )}
               </td>
-              <td className="propDescription">{prop.description}</td>
+              <td className="prop-description">{prop.description}</td>
             </tr>
           ))}
         </tbody>
       </table>
-        <div className="requiredNote">* Required prop</div>
+        <div className="required-note">* Required prop</div>
     </div>
   );
 }
