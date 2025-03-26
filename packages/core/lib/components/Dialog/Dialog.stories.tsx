@@ -3,7 +3,7 @@ import React from "react";
 import Dialog from "./Dialog";
 import DialogActions from "./components/DialogActions";
 import DialogBody from "./components/DialogBody";
-import { DialogCancelButton, DialogSuccessButton } from "./components/DialogButtons";
+import { DialogCloseButton, DialogSuccessButton } from "./components/DialogButtons";
 
 const meta = {
   title: "Components/Dialog",
@@ -55,12 +55,12 @@ export const WithActions: Story = {
     args: {
       open: true,
       onClose: () => console.log('Dialog closed'),
-      onComplete: (status, data) => console.log(`Dialog completed with status: ${status}`, data),
+      onComplete: (status) => console.log(`Dialog completed with status: ${status}`),
       title: 'Confirmation',
       children: [
         <DialogBody key="body">Are you sure you want to proceed?</DialogBody>,
         <DialogActions key="actions">
-          <DialogCancelButton onClick={() => {}}>Cancel</DialogCancelButton>
+          <DialogCloseButton onClick={() => {}}>Cancel</DialogCloseButton>
             <DialogSuccessButton onClick={() => {}}>Confirm</DialogSuccessButton>
         </DialogActions>
       ]

@@ -23,7 +23,6 @@ export interface DialogProps {
   role?: "dialog" | "alertdialog";
   ariaDescribedby?: string;
   ariaLabelledby?: string;
-  ariaLabel?: string;
 }
 
 export interface DialogTitleProps {
@@ -62,6 +61,8 @@ export interface DialogContextType {
   actionsId: string;
 }
 
-// export interface DialogChildProps {
-//     completeDialog: (result?: DialogResult, data?: any) => void;
-// }
+type DialogButtonType = "success" | "failure" | "close";
+
+export interface DialogButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonType?: DialogButtonType;
+}

@@ -27,6 +27,8 @@ const Dialog: React.FC<DialogProps> = ({
   id,
   className = "",
   style,
+  ariaDescribedby,
+  ariaLabelledby,
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const dialogId = id || `dialog-${Math.random().toString(36)}`;
@@ -63,6 +65,7 @@ const Dialog: React.FC<DialogProps> = ({
     }
   };
 
+// handleKeyDown and useEffect are focus control
   const handleKeyDown = (e: React.KeyboardEvent | KeyboardEvent) => {
     if (!dialogRef.current) return;
 
@@ -122,7 +125,6 @@ const Dialog: React.FC<DialogProps> = ({
       }
     }
   };
-
   useEffect(() => {
     if (open && dialogRef.current) {
       previousActiveElement.current = document.activeElement as HTMLElement;
@@ -152,6 +154,7 @@ const Dialog: React.FC<DialogProps> = ({
   }, [open]);
 
   if (!open) return null;
+
 
   let hasDialogTitle = false;
   let hasDialogBody = false;
@@ -214,8 +217,8 @@ const Dialog: React.FC<DialogProps> = ({
           style={style}
           role={role || "dialog"}
           aria-modal="true"
-          aria-labelledby={titleId}
-          aria-describedby={bodyId}
+          aria-labelledby={ariaLabelledby || titleId}
+          aria-describedby={ariaDescribedby || bodyId}
           tabIndex={-1}
         >
           {hasDialogTitle ? (

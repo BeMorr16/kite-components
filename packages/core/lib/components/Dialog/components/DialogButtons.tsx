@@ -1,56 +1,65 @@
 import { useDialogContext } from "../utils/DialogContext";
 import React from "react";
+import { DialogButtonProps, DialogResult } from "../types";
 
-export const DialogSuccessButton: React.FC<
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { data?: any }
-> = ({ children, onClick, ...props }) => {
-  const { completeDialog } = useDialogContext();
+
+export const DialogButton: React.FC<DialogButtonProps> = ({
+  children,
+  onClick,
+  className = "",
+  buttonType,
+  ...props
+}) => {
+  const { completeDialog, onClose } = useDialogContext();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (onClick) onClick(e);
-    completeDialog("success");
+    
+    if (buttonType === "close" || !buttonType) {
+      onClose();
+    } else {
+      completeDialog(buttonType as DialogResult);
+    }
   };
 
+  const getAriaLabel = (): string => {
+    switch (buttonType) {
+      case "success":
+        return "Confirm action";
+      case "failure":
+        return "Reject action";
+      case "close":
+        return "Close dialog";
+      default:
+        return "Dialog action";
+    }
+  };
+
+  const buttonClass = buttonType ? `kite-dialog-button--${buttonType}` : "kite-dialog-button--close";
+
+
   return (
-    <button {...props} type={props.type || "button"} onClick={handleClick} aria-label="Confirm action">
+    <button
+      {...props}
+      type={props.type || "button"}
+      onClick={handleClick}
+      aria-label={props["aria-label"] || getAriaLabel()}
+      className={`kite-dialog-button ${buttonClass} ${className}`}
+    >
       {children}
     </button>
   );
 };
 
-export const DialogFailureButton: React.FC<
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { data?: any }
-> = ({ children, onClick, ...props }) => {
-  const { completeDialog } = useDialogContext();
+export const DialogSuccessButton: React.FC<DialogButtonProps> = (props) => (
+  <DialogButton buttonType="success" {...props} />
+);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (onClick) onClick(e);
-    completeDialog("failure");
-  };
+export const DialogFailureButton: React.FC<DialogButtonProps> = (props) => (
+  <DialogButton buttonType="failure" {...props} />
+);
 
-  return (
-    <button {...props} type={props.type || "button"} onClick={handleClick} aria-label="Reject action">
-      {children}
-    </button>
-  );
-};
-
-export const DialogCancelButton: React.FC<
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { data?: any }
-> = ({ children, onClick, ...props }) => {
-  const { onClose } = useDialogContext();
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (onClick) onClick(e);
-    onClose();
-  };
-
-  return (
-    <button {...props} type={props.type || "button"} onClick={handleClick} aria-label="Cancel dialog">
-      {children}
-    </button>
-  );
-};
+export const DialogCloseButton: React.FC<DialogButtonProps> = (props) => (
+  <DialogButton buttonType="close" {...props} />
+);
