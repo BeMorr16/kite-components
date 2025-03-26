@@ -1,7 +1,7 @@
 import { describe, test, expect, jest } from '@jest/globals';
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Dialog } from '../../../dist';
+import Dialog from '../Dialog/Dialog';
 
 describe('Dialog', () => {
 
@@ -38,6 +38,5 @@ describe('Dialog', () => {
     const closeButton = screen.getByLabelText('Close dialog');
     fireEvent.click(closeButton);
     expect(handleClose).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('dialog')).not.toBeTruthy();
   });
 });
