@@ -14,7 +14,7 @@ const versionInfo = {
   changelog: changelog
 };
 
-const outputDir = path.resolve(__dirname, '../../docs/versioning');
+const outputDir = path.resolve(__dirname, '../../docs/static');
 // if (!fs.existsSync(outputDir)) {
 //   fs.mkdirSync(outputDir, { recursive: true });
 // }

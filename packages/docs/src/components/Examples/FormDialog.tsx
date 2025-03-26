@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactLiveScope from '@site/src/theme/ReactLiveScope';
 import "../../../../core/dist/index.css"
 
-function ProjectFormExample() {
+export default function ProjectFormExample() {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [projectStatus, setProjectStatus] = useState(null); // null, 'success', 'error'
@@ -158,5 +158,3 @@ function ProjectFormExample() {
     </div>
   );
 }
-
-export default ProjectFormExample;

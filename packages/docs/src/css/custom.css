@@ -273,6 +273,75 @@ a:focus-visible {
   margin-top: 4px;
 }
 
+.version-chip-wrapper {
+  margin-left: 1rem;
+}
+
+.version-chip {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  font-weight: 500;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.version-chip:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+  text-decoration: none;
+}
+
+.changelog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.version-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.current-version {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+
+.release-date {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.changelog-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.changelog-content a {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85em;
+}
+
+.navbar-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.version-chip-container {
+  position: absolute;
+  right: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
 /* Animation */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(-10px); }
