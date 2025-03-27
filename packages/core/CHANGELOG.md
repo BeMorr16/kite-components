@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.3.1](https://github.com/BeMorr16/kite-components/compare/v1.3.0...v1.3.1) (2025-03-27)
+
+### Bug Fixes
+
+* update storybook story ([ef1c09f](https://github.com/BeMorr16/kite-components/commit/ef1c09fe0516ee0e41a93d563ba687724b94c2bf))
+
 ## [1.3.0](https://github.com/BeMorr16/kite-components/compare/v1.2.0...v1.3.0) (2025-03-27)
 
 ### Features
