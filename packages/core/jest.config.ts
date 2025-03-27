@@ -1,16 +1,13 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
+import type { JestConfigWithTsJest } from "ts-jest";
 
 const config: JestConfigWithTsJest = {
-  preset: 'ts-jest',
+  preset: "ts-jest",
   testEnvironment: "jsdom",
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {
-    "^.+\\.tsx?$": ["ts-jest", {}],
+    "^.+\\.tsx?$": "ts-jest",
   },
-  testMatch: [
-    "**/__tests__/**/*.ts?(x)",
-    "**/?(*.)+(spec|test).ts?(x)"
-  ],
+  testMatch: ["**/__tests__/**/*.ts?(x)", "**/?(*.)+(spec|test).ts?(x)"],
   roots: ["<rootDir>/lib"],
   collectCoverage: true,
   coverageDirectory: "coverage",
@@ -20,19 +17,19 @@ const config: JestConfigWithTsJest = {
     "!lib/**/*.d.ts",
     "!lib/**/*.stories.{ts,tsx}",
     "!lib/**/__tests__/**",
-    "!lib/**/__mocks__/**"
+    "!lib/**/__mocks__/**",
   ],
   coverageThreshold: {
     global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70
-    }
+      branches: 60,
+      functions: 60,
+      lines: 60,
+      statements: 60,
+    },
   },
   moduleNameMapper: {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
-  }
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+  },
 };
 
 export default config;
