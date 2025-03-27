@@ -1,75 +1,83 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 import Dialog from "./Dialog";
 import DialogActions from "./components/DialogActions";
 import DialogBody from "./components/DialogBody";
-import { DialogCloseButton, DialogSuccessButton } from "./components/DialogButtons";
+import DialogTitle from "./components/DialogTitle";
+import {
+  DialogCloseButton,
+  DialogSuccessButton,
+} from "./components/DialogButtons";
 
 const meta = {
   title: "Components/Dialog",
   component: Dialog,
+  argTypes: {
+    size: {
+      control: { type: "select" },
+      options: ["full", "default"],
+    },
+    onClose: { action: "dialog closed" },
+    onComplete: { action: "dialog completed" },
+  },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A flexible and accessible dialog component with various configuration options.",
+      },
+    },
+  },
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// @ts-ignore
 export const Basic: Story = {
-  args: {
-    open: true,
-    onClose: () => console.log("Dialog closed"),
-    title: "Dialog Title",
-    titleIcon: <p style={{margin: 0}}>😎</p>,
-    children: [
-      <p>
-        This is the dialog content<button>hello</button>
-        <button>second in body</button>
-        </p>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <div>Hello</div>,
-        <DialogActions justify="space-between">
-          <button>cancel</button>
-        <button>Action</button>
-      </DialogActions>,
-    ],
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(true);
+
+    const handleClose = () => {
+      setIsOpen(false);
+      args.onClose();
+    };
+
+    const handleComplete = (result: any) => {
+      setIsOpen(false);
+      args.onComplete?.(result);
+    };
+
+    return (
+      <div>
+        <button onClick={() => setIsOpen(true)}>Open Dialog</button>
+        <Dialog
+          {...args}
+          open={isOpen}
+          onClose={handleClose}
+          onComplete={handleComplete}
+        >
+          <DialogTitle>Interactive Dialog</DialogTitle>
+          <DialogBody>
+            <p>
+              This is an interactive dialog that demonstrates various
+              features:
+            </p>
+            <ul>
+              <li>Customizable size</li>
+              <li>Close on overlay click</li>
+              <li>Escape key handling</li>
+              <li>Focus trapping</li>
+              <li>SuccessButton response logic</li>
+            </ul>
+          </DialogBody>
+          <DialogActions>
+            <DialogCloseButton>Cancel</DialogCloseButton>
+            <DialogSuccessButton>Confirm</DialogSuccessButton>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
   },
 };
-
-export const WithActions: Story = {
-    args: {
-      open: true,
-      onClose: () => console.log('Dialog closed'),
-      onComplete: (status) => console.log(`Dialog completed with status: ${status}`),
-      title: 'Confirmation',
-      children: [
-        <DialogBody key="body">Are you sure you want to proceed?</DialogBody>,
-        <DialogActions key="actions">
-          <DialogCloseButton onClick={() => {}}>Cancel</DialogCloseButton>
-            <DialogSuccessButton onClick={() => {}}>Confirm</DialogSuccessButton>
-        </DialogActions>
-      ]
-    },
-    parameters: {
-      docs: {
-        description: {
-          story: 'A dialog with action buttons for confirmation flows.'
-        }
-      }
-    }
-  };
