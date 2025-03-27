@@ -11,7 +11,7 @@ const changelogUpdated = changelog.slice(changelog.indexOf(""))
 const versionInfo = {
   currentVersion: packageJson.version,
   releaseDate: new Date().toISOString(),
-  changelog: changelog
+  changelog: changelog.slice(13)
 };
 
 const outputDir = path.resolve(__dirname, '../../docs/static');
