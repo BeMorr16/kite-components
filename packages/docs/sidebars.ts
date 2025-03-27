@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
 /**
  * Creating a sidebar enables you to:
@@ -9,22 +9,19 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   docs: [
     {
-      type: 'category',
-      label: 'For Developers',
+      type: "category",
+      label: "For Developers",
       items: [
-        'technical/getting-started',
-        'technical/api-reference',
-        'technical/accessibility',
-        'technical/examples',
+        "technical/getting-started",
+        "technical/api-reference",
+        "technical/accessibility",
+        "technical/examples",
       ],
     },
     {
-      type: 'category',
-      label: 'For Desginers',
-      items: [
-        'non-technical/overview',
-        'non-technical/when-to-use',
-      ],
+      type: "category",
+      label: "For Desginers",
+      items: ["non-technical/overview", "non-technical/when-to-use"],
     },
   ],
 };

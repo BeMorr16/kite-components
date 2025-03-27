@@ -1,77 +1,75 @@
-import type {Config} from '@docusaurus/types';
-import { themes } from 'prism-react-renderer';
+import type { Config } from "@docusaurus/types";
+import { themes } from "prism-react-renderer";
 
 const config: Config = {
-  title: 'Kite Dialog Component',
-  tagline: 'Accessible and responsive dialog component for React',
-  url: 'https://your-url.com',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  projectName: 'kite-dialog',
-  staticDirectories: ['static'],
+  title: "Kite Dialog Component",
+  tagline: "Accessible and responsive dialog component for React",
+  url: "https://your-url.com",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  projectName: "kite-dialog",
+  staticDirectories: ["static"],
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
   ],
 
-  plugins: [
-    '@docusaurus/theme-live-codeblock',
-  ],
+  plugins: ["@docusaurus/theme-live-codeblock"],
 
   themeConfig: {
     navbar: {
-      title: 'Kite Dialog',
+      title: "Kite Dialog",
       logo: {
-        alt: 'Docs Logo',
-        src: 'img/logo.svg',
+        alt: "Docs Logo",
+        src: "img/logo.svg",
       },
       items: [
         {
-          type: 'dropdown',
-          label: 'Docs',
-          position: 'left',
+          type: "dropdown",
+          label: "Docs",
+          position: "left",
           items: [
             {
-              to: '/docs/technical/getting-started',
-              label: 'For Developers',
+              to: "/docs/technical/getting-started",
+              label: "For Developers",
             },
             {
-              to: '/docs/non-technical/overview',
-              label: 'For Designers',
+              to: "/docs/non-technical/overview",
+              label: "For Designers",
             },
           ],
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Documentation',
+          title: "Documentation",
           items: [
             {
-              label: 'Technical Docs',
-              to: '/docs/technical/getting-started',
+              label: "Technical Docs",
+              to: "/docs/technical/getting-started",
             },
             {
-              label: 'Non-Technical Guide',
-              to: '/docs/non-technical/overview',
+              label: "Non-Technical Guide",
+              to: "/docs/non-technical/overview",
             },
             {
-              label: 'Version History',
-              to: '/changelog',
+              label: "Version History",
+              to: "/changelog",
             },
           ],
         },

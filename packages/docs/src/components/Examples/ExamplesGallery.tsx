@@ -1,8 +1,8 @@
-import React from 'react';
-import BasicDialog from './BasicDialog';
-import ConfirmationDialog from './ConfirmationDialog';
-import CustomDialog from './CustomDialog';
-import "../../../../core/dist/index.css"
+import React from "react";
+import BasicDialog from "./BasicDialog";
+import ConfirmationDialog from "./ConfirmationDialog";
+import CustomDialog from "./CustomDialog";
+import "../../../../core/dist/index.css";
 
 export default function DialogExamplesGallery() {
   return (
@@ -12,7 +12,7 @@ export default function DialogExamplesGallery() {
         <p>A simple dialog with title, content, and action buttons.</p>
         <BasicDialog />
       </div>
-      
+
       <div className="example-card">
         <h3>Custom Styled Dialog</h3>
         <p>Demonstrates customization capabilities for complex use cases.</p>

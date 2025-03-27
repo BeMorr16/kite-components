@@ -16,9 +16,13 @@ import FormDialog from "@site/src/components/Examples/FormDialog";
 ```jsx
 const handleCompletion = (result) => {
   if (result === "success") {
-    {/* Success logic */}
+    {
+      /* Success logic */
+    }
   } else if (result === "failure") {
-    {/* Fail logic */}
+    {
+      /* Fail logic */
+    }
   }
 };
 return (
@@ -42,13 +46,15 @@ return (
 ```
 
 ## Complex Form Example
+
 > If form requires complex/async logic use your own onClick.
 
-> Can use your own button or pass onClick to DialogButton which will be called in order of 1. passed onClick 2. onComplete (if defined) 3. onClose 
+> Can use your own button or pass onClick to DialogButton which will be called in order of 1. passed onClick 2. onComplete (if defined) 3. onClose
 
-<FormDialog/>
+<FormDialog />
 
 Code:
+
 ```jsx
 function ProjectFormExample() {
   const [open, setOpen] = useState(false);
@@ -56,7 +62,7 @@ function ProjectFormExample() {
   const [projectStatus, setProjectStatus] = useState(null); // null, 'success', 'error'
   const [formData, setFormData] = useState({ name: "", description: "" });
   const [errors, setErrors] = useState({});
-  
+
   const validateForm = () => {
     const formErrors = {};
     // Check required fields and validate
@@ -86,7 +92,7 @@ function ProjectFormExample() {
       {projectStatus === 'success' && (
         <div className="status-badge success">Project created successfully!</div>
       )}
-      
+
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
@@ -105,13 +111,13 @@ function ProjectFormExample() {
           </div>
           {/* Additional form fields... */}
         </DialogBody>
-        
+
         <DialogActions>
           <button className="custom" onClick={() => setOpen(false)}>
             Cancel
           </button>
-          
-          <button 
+
+          <button
             className="custom"
             onClick={handleSubmit}
             disabled={isSubmitting}
@@ -127,4 +133,4 @@ function ProjectFormExample() {
 
 ## Other Examples
 
-<DialogExamplesGallery/>
+<DialogExamplesGallery />

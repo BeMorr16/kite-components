@@ -1,37 +1,31 @@
-import React from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
+import React from "react";
+import clsx from "clsx";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
 
-import styles from './index.module.css';
-import BasicDialog from '../components/Examples/BasicDialog';
+import styles from "./index.module.css";
+import BasicDialog from "../components/Examples/BasicDialog";
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero', styles.heroBanner)}>
+    <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        {/* <div className={styles.buttons}>
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/technical/getting-started.mdx">
-            Documentation
-          </Link>
-        </div> */}
       </div>
     </header>
   );
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Accessible and responsive dialog components for React">
+      description="Accessible and responsive dialog components for React"
+    >
       <HomepageHeader />
       <main>
         <div className="container">
@@ -53,7 +47,8 @@ export default function Home() {
               <Link
                 className="button button--secondary button--md"
                 to="/docs/technical/getting-started"
-              style={{maxWidth: "50%", marginLeft: "25%"}}>
+                style={{ maxWidth: "50%", marginLeft: "25%" }}
+              >
                 Get Started with Dialog
               </Link>
             </div>
@@ -61,23 +56,31 @@ export default function Home() {
               <BasicDialog />
             </div>
           </div>
-          
+
           <div className={styles.userSections}>
             <div className={styles.userSection}>
               <h3>For Developers</h3>
-              <p>Technical documentation to implement Kite Dialog components in your application.</p>
+              <p>
+                Technical documentation to implement Kite Dialog components in
+                your application.
+              </p>
               <Link
                 className="button button--outline button--md"
-                to="/docs/technical/getting-started">
+                to="/docs/technical/getting-started"
+              >
                 Technical Docs
               </Link>
             </div>
             <div className={styles.userSection}>
               <h3>For Product Managers</h3>
-              <p>Non-technical guides to understand when and how to use dialog components.</p>
+              <p>
+                Non-technical guides to understand when and how to use dialog
+                components.
+              </p>
               <Link
                 className="button button--outline button--md"
-                to="/docs/non-technical/overview">
+                to="/docs/non-technical/overview"
+              >
                 Non-Technical Guide
               </Link>
             </div>

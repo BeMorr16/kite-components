@@ -1,6 +1,6 @@
-import React, { JSX } from 'react';
-import OriginalNavbar from '@theme-original/Navbar';
-import VersionChip from '../../components/VersionChip';
+import React, { JSX } from "react";
+import OriginalNavbar from "@theme-original/Navbar";
+import VersionChip from "../../components/VersionChip";
 
 export default function NavbarWrapper(props): JSX.Element {
   return (

@@ -19,7 +19,7 @@
 }
 
 /* For dark mode */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
@@ -343,18 +343,24 @@ a:focus-visible {
   z-index: 200;
 }
 .version-message {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 @media (max-width: 1000px) {
   .version-message {
     display: none;
   }
   .version-chip-container {
-    right: .5rem;
+    right: 0.5rem;
   }
 }
 /* Animations */
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,30 +1,26 @@
-import React, { useState } from 'react';
-import ReactLiveScope from '@site/src/theme/ReactLiveScope';
-import "../../../../core/dist/index.css"
-
-
+import React, { useState } from "react";
+import ReactLiveScope from "@site/src/theme/ReactLiveScope";
+import "../../../../core/dist/index.css";
 
 export default function BasicDialog() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
-    <div className='example-container'>
-      <button 
-        onClick={() => setOpen(true)}
-        className="button button--primary"
-      >
+    <div className="example-container">
+      <button onClick={() => setOpen(true)} className="button button--primary">
         Open Dialog
       </button>
-      
-      <ReactLiveScope.Dialog 
-        open={open} 
+
+      <ReactLiveScope.Dialog
+        open={open}
         onClose={() => setOpen(false)}
         title="Example Dialog"
         titleIcon="😎"
       >
         <ReactLiveScope.DialogBody>
           <p>
-          This is a basic dialog example that demonstrates the core functionality.
-          You can customize the content, title, and actions to suit your needs.
+            This is a basic dialog example that demonstrates the core
+            functionality. You can customize the content, title, and actions to
+            suit your needs.
           </p>
         </ReactLiveScope.DialogBody>
         <ReactLiveScope.DialogActions>

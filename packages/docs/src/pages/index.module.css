@@ -3,7 +3,7 @@
  * and scoped locally.
  */
 
- .heroBanner {
+.heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
@@ -90,11 +90,11 @@
   .demoSection {
     grid-template-columns: 1fr;
   }
-  
+
   .userSections {
     grid-template-columns: 1fr;
   }
-  
+
   .heroBanner {
     padding: 2rem 0;
   }

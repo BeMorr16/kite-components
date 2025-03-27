@@ -6,7 +6,10 @@ export default function ActionExamples() {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   return (
-    <div className="example-container" style={{display: "flex", flexDirection: 'row', gap: "24px"}}>
+    <div
+      className="example-container"
+      style={{ display: "flex", flexDirection: "row", gap: "24px" }}
+    >
       <div>
         <button
           onClick={() => setOpen1(true)}
@@ -70,19 +73,26 @@ export default function ActionExamples() {
               eu porta enim. Duis nec fringilla nisi. Praesent blandit tellus
               facilisis, gravida felis ut, posuere neque. Pellentesque tincidunt
               gravida justo, sit amet bibendum mi tincidunt at.
-                      </p>
-                      <div style={{display: "flex", gap: "8px", justifyContent: "flex-end"}}>
-                          
-            <ReactLiveScope.DialogCloseButton onClick={() => setOpen1(false)}>
-              Cancel
-            </ReactLiveScope.DialogCloseButton>
-            <ReactLiveScope.DialogSuccessButton onClick={() => setOpen1(false)}>
-              Confirm
-            </ReactLiveScope.DialogSuccessButton>
-                      </div>
+            </p>
+            <div
+              style={{
+                display: "flex",
+                gap: "8px",
+                justifyContent: "flex-end",
+              }}
+            >
+              <ReactLiveScope.DialogCloseButton onClick={() => setOpen1(false)}>
+                Cancel
+              </ReactLiveScope.DialogCloseButton>
+              <ReactLiveScope.DialogSuccessButton
+                onClick={() => setOpen1(false)}
+              >
+                Confirm
+              </ReactLiveScope.DialogSuccessButton>
+            </div>
           </ReactLiveScope.DialogBody>
         </ReactLiveScope.Dialog>
-          </div>
+      </div>
       <div>
         <button
           onClick={() => setOpen2(true)}
