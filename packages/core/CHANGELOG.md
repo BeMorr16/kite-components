@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.3.0](https://github.com/BeMorr16/kite-components/compare/v1.2.0...v1.3.0) (2025-03-27)
+
+### Features
+
+* comprehensive testing to coverage ([e944daa](https://github.com/BeMorr16/kite-components/commit/e944daa5cc99d183804ed4f6625636d709433b9a))
+* testing components ([645d7f9](https://github.com/BeMorr16/kite-components/commit/645d7f989ce83dc02544063f065558dd5b3be166))
+* versioning on docs ([d8726e6](https://github.com/BeMorr16/kite-components/commit/d8726e69f88c36a71a8d80715eed0787e35a7a37))
+
+### Bug Fixes
+
+* add version message ([788545a](https://github.com/BeMorr16/kite-components/commit/788545a1846270acef8e88ca79061575a94662e4))
+* button styling and refactor focus lock ([88bcb4f](https://github.com/BeMorr16/kite-components/commit/88bcb4f745af182e0886d449e7886e2e5db13d43))
+* changlog string fix ([70c0929](https://github.com/BeMorr16/kite-components/commit/70c092990c88b8a0b797701d3dd3cfccae4f377a))
+* lint and add comments for clarity ([1fb7ea0](https://github.com/BeMorr16/kite-components/commit/1fb7ea06319f1cecc327b9498c64c6bc6717213e))
+* prettier lint docs ([ff799ba](https://github.com/BeMorr16/kite-components/commit/ff799ba84c8d705e74e4b30925a69d94d834fcb4))
+
 ## 1.2.0 (2025-03-26)
 
 ### Features
