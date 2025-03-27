@@ -6,8 +6,13 @@ const DialogBody: React.FC<DialogBodyProps> = ({
   children,
   className = "",
 }) => {
-    const { bodyId } = useDialogContext();
-    return <div id={bodyId} className={`kite-dialog-body ${className}`}>{children}</div>;
+  // Get bodyId for accessibility
+  const { bodyId } = useDialogContext();
+  return (
+    <div id={bodyId} className={`kite-dialog-body ${className}`}>
+      {children}
+    </div>
+  );
 };
 
 export default DialogBody;

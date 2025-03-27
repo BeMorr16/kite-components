@@ -1,15 +1,16 @@
 export type DialogSize = "default" | "full";
-
+// for onComplete
 export type DialogResult = "success" | "failure";
-
+// Main Dialog props
 export interface DialogProps {
+  //Required
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
 
+  // Optional completion handler
   onComplete?: (result?: DialogResult) => void;
-
-  // Optionals
+  //Optionals
   title?: React.ReactNode;
   titleVariant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   titleIcon?: React.ReactNode;
@@ -48,13 +49,14 @@ export interface DialogOverlayProps {
   className?: string;
 }
 
-//Anything needed at the component level. Gonne have to alter for completing
+//Anything needed at the component level.
 export interface DialogContextType {
   onClose: () => void;
   size: "default" | "full";
   completeDialog: (result?: DialogResult) => void;
   titleIcon?: React.ReactNode;
 
+  //Accessibility IDs
   dialogId: string;
   titleId: string;
   bodyId: string;
@@ -63,6 +65,7 @@ export interface DialogContextType {
 
 type DialogButtonType = "success" | "failure" | "close";
 
-export interface DialogButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface DialogButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonType?: DialogButtonType;
 }

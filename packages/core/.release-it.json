@@ -1,32 +1,32 @@
 {
-    "git": {
-      "commitMessage": "chore: release v${version}",
-      "tagName": "v${version}",
-      "push": false
-    },
-    "npm": {
-      "publish": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "infile": "CHANGELOG.md",
-        "preset": {
-            "name": "conventionalcommits",
-            "types": [
-                {
-                  "type": "feat",
-                  "section": "Features"
-                },
-                {
-                  "type": "fix",
-                  "section": "Bug Fixes"
-                }
-            ]
-        },
-        "header": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n"
-      }
-    },
-    "hooks": {
-        "after:release": "node ./scripts/copy-version-info.js"
-      }
+  "git": {
+    "commitMessage": "chore: release v${version}",
+    "tagName": "v${version}",
+    "push": false
+  },
+  "npm": {
+    "publish": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            "section": "Features"
+          },
+          {
+            "type": "fix",
+            "section": "Bug Fixes"
+          }
+        ]
+      },
+      "header": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n"
+    }
+  },
+  "hooks": {
+    "after:release": "node ./scripts/copy-version-info.js"
   }
+}

@@ -1,3 +1,4 @@
+// Render the correct element based on variant
 export default function getTitleElement(
   variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h2",
   props: React.HTMLAttributes<HTMLHeadingElement>,

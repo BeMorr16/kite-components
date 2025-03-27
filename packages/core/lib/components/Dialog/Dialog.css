@@ -1,8 +1,10 @@
-:focus-visible{
+/* Focus override */
+:focus-visible {
   outline: 2px solid #4d90fe !important;
   outline-offset: 2px;
 }
 
+/* dialog overlay */
 .kite-dialog-overlay {
   position: fixed;
   top: 0;
@@ -16,6 +18,7 @@
   z-index: 1000;
 }
 
+/* base container */
 .kite-dialog {
   background-color: white;
   border-radius: 4px;
@@ -27,6 +30,7 @@
   outline: none;
 }
 
+/* Sizing */
 .kite-dialog--default {
   width: auto;
   max-height: 72%;
@@ -38,13 +42,14 @@
   border-radius: 0;
 }
 
+/* Header containing title and close */
 .kite-dialog-header {
-  padding: 16px 24px; 
+  padding: 16px 24px;
   border-bottom: 1px solid #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky; 
+  position: sticky;
   top: 0;
   background: white;
   z-index: 1;
@@ -75,11 +80,12 @@
   background: transparent;
   border: none;
   font-size: 24px;
-  cursor: pointer; 
+  cursor: pointer;
   padding: 4px 8px;
   color: #595959;
 }
 
+/* content with scroll */
 .kite-dialog-body {
   padding: 24px;
   overflow-y: auto;
@@ -87,6 +93,7 @@
   text-align: left;
 }
 
+/* Action container */
 .kite-dialog-actions {
   padding: 16px 24px;
   border-top: 1px solid #e8e8e8;
@@ -111,6 +118,7 @@
   justify-content: space-between;
 }
 
+/* Base DialogButton styling */
 .kite-dialog-button {
   display: inline-flex;
   align-items: center;
@@ -129,6 +137,7 @@
   border: none;
 }
 
+/* variants */
 .kite-dialog-button--success {
   background-color: #2e7d32;
   color: white;
@@ -181,6 +190,7 @@
   box-shadow: none;
 }
 
+/* Responsive resizing */
 @media (max-width: 600px) {
   .kite-dialog {
     width: 100%;

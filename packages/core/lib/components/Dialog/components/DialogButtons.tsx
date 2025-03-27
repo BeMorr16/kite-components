@@ -2,7 +2,6 @@ import { useDialogContext } from "../utils/DialogContext";
 import React from "react";
 import { DialogButtonProps, DialogResult } from "../types";
 
-
 export const DialogButton: React.FC<DialogButtonProps> = ({
   children,
   onClick,
@@ -10,19 +9,22 @@ export const DialogButton: React.FC<DialogButtonProps> = ({
   buttonType,
   ...props
 }) => {
+  // Grab completiong and close func from context
   const { completeDialog, onClose } = useDialogContext();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  // Handles button click
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (onClick) onClick(e);
-    
+    // Close dialog or complete with result
     if (buttonType === "close" || !buttonType) {
       onClose();
     } else {
       completeDialog(buttonType as DialogResult);
     }
-  };
+  }
 
+  // Get aria label based off type
   const getAriaLabel = (): string => {
     switch (buttonType) {
       case "success":
@@ -36,8 +38,8 @@ export const DialogButton: React.FC<DialogButtonProps> = ({
     }
   };
 
+  // Determine button class
   const buttonClass = buttonType ? `kite-dialog-button--${buttonType}` : "";
-
 
   return (
     <button
@@ -52,6 +54,7 @@ export const DialogButton: React.FC<DialogButtonProps> = ({
   );
 };
 
+// Specialized button components for backwards compatiblity
 export const DialogSuccessButton: React.FC<DialogButtonProps> = (props) => (
   <DialogButton buttonType="success" {...props} />
 );

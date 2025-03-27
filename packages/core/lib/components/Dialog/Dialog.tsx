@@ -7,10 +7,10 @@ import DialogTitle from "./components/DialogTitle";
 import DialogBody from "./components/DialogBody";
 import DialogActions from "./components/DialogActions";
 import "./Dialog.css";
-import { useKeyboardEvent } from "./hooks/useKeyboardEvent";
-import { useLockBodyScroll } from "./hooks/useLockScroll";
+import useKeyboardEvent from "./hooks/useKeyboardEvent";
+import useLockBodyScroll from "./hooks/useLockScroll";
 import getTitleElement from "./utils/getTitleElement";
-import { useFocusTrap } from "./hooks/useFocusTrap";
+import useFocusTrap from "./hooks/useFocusTrap";
 
 const Dialog: React.FC<DialogProps> = ({
   open,
@@ -30,11 +30,14 @@ const Dialog: React.FC<DialogProps> = ({
   ariaDescribedby,
   ariaLabelledby,
 }) => {
+  // Ref and Ids necessary for focustrap and accessibility
   const dialogRef = useRef<HTMLDivElement>(null);
   const dialogId = id || `dialog-${Math.random().toString(36)}`;
   const titleId = `${dialogId}-title`;
   const bodyId = `${dialogId}-body`;
   const actionsId = `${dialogId}-actions`;
+
+  // Wrapper to check for onComplete when DialogButton used
   const completeDialog = useCallback(
     (result?: DialogResult) => {
       if (onComplete) {
@@ -45,10 +48,13 @@ const Dialog: React.FC<DialogProps> = ({
     [onClose, onComplete]
   );
 
+  // Lock scroll when open
   useLockBodyScroll(open);
 
+  // Trap focus for key navigation
   useFocusTrap(dialogRef, { enabled: open, titleId });
 
+  // Handles close on escape
   useKeyboardEvent(
     "Escape",
     () => {
@@ -59,14 +65,16 @@ const Dialog: React.FC<DialogProps> = ({
     [open, closeOnEsc, onClose]
   );
 
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Handles close on overlay click
+  function handleOverlayClick(e: React.MouseEvent<HTMLDivElement>) {
     if (e.target === e.currentTarget && closeOnOverlayClick) {
       onClose();
     }
-  };
+  }
 
   if (!open) return null;
 
+  // Analyze children to check for dialog components
   let hasDialogTitle = false;
   let hasDialogBody = false;
   let hasDialogActions = false;
@@ -95,6 +103,7 @@ const Dialog: React.FC<DialogProps> = ({
     }
   });
 
+  // Some warnings about potential issues
   if (hasDialogTitle && title) {
     console.warn(
       "Dialog received title prop and DialogTitle component. The DialogTitle component will be used."
@@ -107,6 +116,7 @@ const Dialog: React.FC<DialogProps> = ({
     console.error("Dialog needs children.");
   }
 
+  // Prepare context for provider
   const contextValue = {
     onClose,
     completeDialog,
@@ -118,6 +128,7 @@ const Dialog: React.FC<DialogProps> = ({
     actionsId,
   };
 
+  // Render dialog in a portal to ensure root level and correct placement
   return createPortal(
     <DialogContext.Provider value={contextValue}>
       <DialogOverlay onClick={handleOverlayClick}>
@@ -132,6 +143,7 @@ const Dialog: React.FC<DialogProps> = ({
           aria-describedby={ariaDescribedby || bodyId}
           tabIndex={-1}
         >
+          {/* Render title */}
           {hasDialogTitle ? (
             dialogTitleComponent
           ) : title ? (
@@ -158,7 +170,7 @@ const Dialog: React.FC<DialogProps> = ({
               </button>
             </div>
           ) : null}
-
+          {/* Render Body */}
           {hasDialogBody ? (
             dialogBodyComponent
           ) : (
@@ -166,7 +178,7 @@ const Dialog: React.FC<DialogProps> = ({
               {otherComponents}
             </div>
           )}
-
+          {/* Render actions if present */}
           {hasDialogActions && dialogActionsComponent}
         </div>
       </DialogOverlay>

@@ -7,6 +7,7 @@ const DialogActions: React.FC<DialogActionsProps> = ({
   justify = "end",
   className = "",
 }) => {
+  // Get actionsId for accessbiltuy
   const { actionsId } = useDialogContext();
   return (
     <div
