@@ -10,6 +10,12 @@ This repository contains an accessible Dialog component along with documentation
 git clone https://github.com/BeMorr16/kite-components.git
 cd kite-components
 ```
+or
+
+```bash
+git clone git@github.com:BeMorr16/kite-components.git
+cd kite-components
+```
 
 ### Install dependencies
 
@@ -41,7 +47,7 @@ pnpm --filter @kite/dialog test
 ```
 
 To start Storybook (component development environment):
-See Documentation for usage examples.
+See Documentation site for usage examples.
 
 ```bash
 pnpm --filter @kite/dialog storybook
