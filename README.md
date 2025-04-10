@@ -1,4 +1,4 @@
-# Kite Components
+# Kite Components (Take Home Component Example)
 
 This repository contains an accessible Dialog component along with documentation and testing.
 
